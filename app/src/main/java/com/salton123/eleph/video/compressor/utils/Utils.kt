@@ -1,9 +1,11 @@
 package com.salton123.eleph.video.compressor.utils
 
+import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever
 import android.text.TextUtils
 import android.util.Log
 import com.salton123.eleph.video.compressor.model.VideoItem
+import org.xutils.x
 import java.io.File
 import java.util.Locale
 
@@ -57,6 +59,7 @@ object Utils {
         val mimeType = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)
         val width = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)?.toIntOrNull() ?: 0
         val height = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)?.toIntOrNull() ?: 0
+        saveBitmap(filePath, mmr.frameAtTime)
         mmr.release()
         return VideoItem().apply {
             this.filePath = filePath
@@ -94,11 +97,23 @@ object Utils {
         return dirName
     }
 
-    private fun dirName(file: File): String {
-        return dirName(file.absolutePath)
+    fun saveBitmap(filePath: String, bitmap: Bitmap) {
+        x.task().post {
+            val savePath = getSaveBitmapPath(filePath)
+            val savePathFile = File(savePath)
+            if (!savePathFile.exists()) {
+                savePathFile.mkdirs()
+            }
+            BitmapUtil.saveImage(savePath, bitmap, Bitmap.CompressFormat.JPEG, 80)
+        }
     }
 
-    fun saveToDb(videoItem: VideoItem) {
+    fun getSaveBitmapPath(filePath: String): String {
+        return x.app().cacheDir.absolutePath + File.separator + "cache" + File.separator + Md5Utils.md5(filePath)
+    }
+
+    private fun dirName(file: File): String {
+        return dirName(file.absolutePath)
     }
 
     /**
