@@ -2,6 +2,7 @@ package com.salton123.eleph.video.compressor.ui
 
 import android.os.Bundle
 import android.widget.ListView
+import androidx.recyclerview.widget.RecyclerView
 import com.salton123.base.BaseActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.base.feature.PermissionFeature
@@ -24,6 +25,7 @@ class MainActivity : BaseActivity() {
     override fun getLayout(): Int = R.layout.activity_main
     private lateinit var mImmersionFeature: ImmersionFeature
     private lateinit var listView: ListView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var mAdapter: VideoListAdapter
     private var dataMap: HashMap<String, MutableList<VideoItem>> = hashMapOf()
     private val simpleDateFormat = SimpleDateFormat("yyyy_MM_dd", Locale.getDefault())
@@ -35,6 +37,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViewAndData() {
+        recyclerView = findViewById(R.id.recyclerView)
+    }
+
+    private fun init() {
         listView = findViewById(R.id.listView)
         mAdapter = VideoListAdapter()
         listView.adapter = mAdapter
