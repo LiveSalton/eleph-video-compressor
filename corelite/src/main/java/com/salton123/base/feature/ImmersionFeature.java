@@ -24,6 +24,7 @@ public class ImmersionFeature implements IFeature {
     public void onBind() {
         mImmersionBar = getImmersionBar();
         mImmersionBar.init();
+        dardFont();
     }
 
     public ImmersionBar getImmersionBar() {

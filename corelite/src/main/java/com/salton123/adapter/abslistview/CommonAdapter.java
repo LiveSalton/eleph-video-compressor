@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.salton123.adapter.abslistview.base.ItemViewDelegate;
 
+import org.jetbrains.annotations.NotNull;
+
 public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
 
     public CommonAdapter(Context context, final int layoutId) {
@@ -26,6 +28,6 @@ public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T> {
         });
     }
 
-    protected abstract void convert(ViewHolder viewHolder, T item, int position);
+    protected abstract void convert(@NotNull ViewHolder viewHolder, @NotNull T item, int position);
 
 }

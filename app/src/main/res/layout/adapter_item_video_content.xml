@@ -4,14 +4,18 @@
     android:id="@+id/llRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ali_pay_round_bg"
-    android:backgroundTint="@color/color_default_ff728ac6"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
     android:paddingRight="10dp"
     android:paddingBottom="10dp">
+
+    <ImageView
+        android:id="@+id/ivThumbnail"
+        android:src="@drawable/ic_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -22,7 +26,7 @@
         android:gravity="center_vertical|start"
         android:lines="1"
         android:text="最新合集"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -35,8 +39,7 @@
         android:layout_marginBottom="5dp"
         android:gravity="center_vertical|start"
         android:lines="1"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         tools:text="www.baidu.com" />
-
 </LinearLayout>

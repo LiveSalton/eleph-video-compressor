@@ -27,7 +27,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.google.code.gson:gson:2.8.5'
-    api "com.squareup.okhttp3:okhttp:3.7.0"
     api project(":corelite")
 }
