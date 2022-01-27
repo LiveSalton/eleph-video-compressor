@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+Properties configProp = new Properties()
+configProp.load(new FileInputStream(file("$rootDir/config.properties")))
+
+
+android {
+    compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
+    buildToolsVersion "${rootProject.ext.android.buildToolsVersion}"
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.android.targetSdkVersion as Integer
+        applicationId "com.salton123.bookmarksbrowser"
+        versionName rootProject.ext.android.versionName
+        versionCode rootProject.ext.android.versionCode as Integer
+        ndk {
+            abiFilters "arm64-v8a"
+//            "armeabi-v7a"
+//            , "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            keyAlias configProp['keystore.keyAlias']
+            keyPassword configProp['keystore.keyPassword']
+            storeFile file(configProp['keystore.storeFile'])
+            storePassword configProp['keystore.storePassword']
+            // 使用旧版签名，禁用V2版签名模式
+            v2SigningEnabled false
+        }
+    }
+    android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix '00'
+            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            shrinkResources true
+//            zipAlignEnabled true
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType == "release") {
+                outputFileName = "bb" + "_release_time_" + releaseTime() + ".apk"
+            }
+            if (variant.buildType == "debug") {
+                outputFileName = "bb" + "_debug_time_" + releaseTime() + ".apk"
+            }
+        }
+    }
+    sourceSets {
+        main {
+            if ("${rootProject.ext.dependVersion.appLanguage}" == "tw") {
+                assets.srcDirs = ['src/main/assets_tw']
+                res.srcDirs = ['src/main/res_tw']
+            } else if ("${rootProject.ext.dependVersion.appLanguage}" == "sin") {
+                assets.srcDirs = ['src/main/assets_sin']
+                res.srcDirs = ['src/main/res_sin']
+            } else {
+                assets.srcDirs = ['src/main/assets']
+                res.srcDirs = ['src/main/res']
+            }
+            if ("${rootProject.ext.dependVersion.appDevelop}" == "true") {
+                assets.srcDirs = assets.getSrcDirs() + ['src/main/assets_type']
+                res.srcDirs = res.getSrcDirs() + ['src/main/res_type']
+            }
+            println "dirs=" + res.getSrcDirs() + ":" + assets.getSrcDirs() + ",appDevelop=${rootProject.ext.dependVersion.appDevelop}" + ",appLanguage=${rootProject.ext.dependVersion.appLanguage}"
+        }
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmmss")
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(":corelite")
+}
