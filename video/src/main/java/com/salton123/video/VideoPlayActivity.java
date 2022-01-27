@@ -13,7 +13,6 @@ import com.salton123.video.bean.LiveAssetCategoryList;
 import com.salton123.video.bean.LiveChannelInfo;
 import com.salton123.video.bean.LivePlayUrlM3u8;
 import com.salton123.video.bean.VodInfo;
-import com.salton123.bookmarksbrowser.R;
 import com.salton123.video.player.VideoBean;
 import com.salton123.video.player.VideoViewWrapper;
 import com.salton123.view.ShowListWheelView;

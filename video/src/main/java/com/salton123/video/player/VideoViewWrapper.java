@@ -11,8 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
-import com.salton123.bookmarksbrowser.R;
-
+import com.salton123.video.R;
 
 /**
  * User: newSalton@outlook.com

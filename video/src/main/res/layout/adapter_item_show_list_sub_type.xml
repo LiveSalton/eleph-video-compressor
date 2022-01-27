@@ -18,7 +18,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center|left"
         android:text="火辣辣"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         />
 
