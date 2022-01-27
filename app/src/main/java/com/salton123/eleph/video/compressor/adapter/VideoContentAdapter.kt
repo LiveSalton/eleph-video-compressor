@@ -1,16 +1,12 @@
 package com.salton123.eleph.video.compressor.adapter
 
 import android.content.Context
-import android.media.MediaMetadataRetriever
 import android.text.format.Formatter
-import android.util.Log
+import com.bumptech.glide.Glide
 import com.salton123.adapter.abslistview.CommonAdapter
 import com.salton123.adapter.abslistview.ViewHolder
 import com.salton123.bookmarksbrowser.R
 import com.salton123.eleph.video.compressor.model.VideoItem
-import com.salton123.eleph.video.compressor.utils.Utils
-import org.xutils.x
-import java.io.File
 
 /**
  * Time:2022/1/27 14:05
@@ -22,15 +18,10 @@ class VideoContentAdapter(val context: Context) :
     override fun convert(viewHolder: ViewHolder, item: VideoItem, position: Int) {
         viewHolder.setText(R.id.tvTitle, item.name)
             .setText(R.id.tvSubTitle, Formatter.formatFileSize(context, item.size))
-        val path = Utils.getSaveBitmapPath(item.filePath)
-        if (File(path).exists()) {
-            x.image().bind(viewHolder.getView(R.id.ivThumbnail), path)
-        } else {
-            val mmr = MediaMetadataRetriever()
-            val filePath = item.filePath
-            Log.i(Utils.TAG, "filePath:$filePath")
-            mmr.setDataSource(filePath)
-            Utils.saveBitmap(filePath, mmr.frameAtTime)
-        }
+        Glide.with(context).load(item.filePath)
+            .centerCrop()
+            .thumbnail(0.3f)
+            .placeholder(R.drawable.ic_placeholder)
+            .into(viewHolder.getView(R.id.ivThumbnail))
     }
 }

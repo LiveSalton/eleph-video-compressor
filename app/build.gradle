@@ -38,11 +38,11 @@ android {
 
     buildTypes {
         debug {
-            versionNameSuffix '00'
             signingConfig signingConfigs.release
-//            minifyEnabled true
-//            shrinkResources true
-//            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             signingConfig signingConfigs.release
@@ -81,6 +81,13 @@ android {
             }
             println "dirs=" + res.getSrcDirs() + ":" + assets.getSrcDirs() + ",appDevelop=${rootProject.ext.dependVersion.appDevelop}" + ",appLanguage=${rootProject.ext.dependVersion.appLanguage}"
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 }
 

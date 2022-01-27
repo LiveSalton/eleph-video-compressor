@@ -59,7 +59,7 @@ object Utils {
         val mimeType = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_MIMETYPE)
         val width = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)?.toIntOrNull() ?: 0
         val height = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)?.toIntOrNull() ?: 0
-        saveBitmap(filePath, mmr.frameAtTime)
+//        saveBitmap(filePath, mmr.frameAtTime)
         mmr.release()
         return VideoItem().apply {
             this.filePath = filePath

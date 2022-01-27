@@ -15,5 +15,10 @@ public class XApp extends Application {
     public void onCreate() {
         super.onCreate();
         x.Ext.init(this);
+        // Picasso.setSingletonInstance(
+        //     new Picasso.Builder(this)
+        //         .addRequestHandler(new VideoRequestHandler())
+        //         .build()
+        // );
     }
 }
