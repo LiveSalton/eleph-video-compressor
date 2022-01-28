@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 
 /**
  * User: newSalton@outlook.com

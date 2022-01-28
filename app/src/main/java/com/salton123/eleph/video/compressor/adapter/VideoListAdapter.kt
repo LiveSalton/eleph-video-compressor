@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.GridView
 import android.widget.TextView
-import com.salton123.bookmarksbrowser.R
+import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.model.ContentType
 import com.salton123.eleph.video.compressor.model.IMultiType
 import com.salton123.eleph.video.compressor.model.TYPE_CONTENT

@@ -1,6 +1,5 @@
 package com.salton123.adapter.abslistview.base;
 
-
 import android.util.SparseArray;
 
 import com.salton123.adapter.abslistview.ViewHolder;
@@ -27,10 +26,10 @@ public class ItemViewDelegateManager<T> {
     public ItemViewDelegateManager<T> addDelegate(int viewType, ItemViewDelegate<T> delegate) {
         if (delegates.get(viewType) != null) {
             throw new IllegalArgumentException(
-                    "An ItemViewDelegate is already registered for the viewType = "
-                            + viewType
-                            + ". Already registered ItemViewDelegate is "
-                            + delegates.get(viewType));
+                "An ItemViewDelegate is already registered for the viewType = "
+                    + viewType
+                    + ". Already registered ItemViewDelegate is "
+                    + delegates.get(viewType));
         }
         delegates.put(viewType, delegate);
         return this;
@@ -66,7 +65,7 @@ public class ItemViewDelegateManager<T> {
             }
         }
         throw new IllegalArgumentException(
-                "No ItemViewDelegate added that matches position=" + position + " in data source");
+            "No ItemViewDelegate added that matches position=" + position + " in data source");
     }
 
     public void convert(ViewHolder holder, T item, int position) {
@@ -80,12 +79,11 @@ public class ItemViewDelegateManager<T> {
             }
         }
         throw new IllegalArgumentException(
-                "No ItemViewDelegateManager added that matches position=" + position + " in data source");
+            "No ItemViewDelegateManager added that matches position=" + position + " in data source");
     }
 
-
-    public int getItemViewLayoutId(int viewType) {
-        return delegates.get(viewType).getItemViewLayoutId();
+    public int getItemViewLayoutId(int viewType, int position) {
+        return delegates.get(viewType).getItemViewLayoutId(position);
     }
 
     public int getItemViewType(ItemViewDelegate itemViewDelegate) {
@@ -101,10 +99,10 @@ public class ItemViewDelegateManager<T> {
             }
         }
         throw new IllegalArgumentException(
-                "No ItemViewDelegate added that matches position=" + position + " in data source");
+            "No ItemViewDelegate added that matches position=" + position + " in data source");
     }
 
     public int getItemViewLayoutId(T item, int position) {
-        return getItemViewDelegate(item, position).getItemViewLayoutId();
+        return getItemViewDelegate(item, position).getItemViewLayoutId(position);
     }
 }

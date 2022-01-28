@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.salton123.base.BaseFragment;
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 import com.salton123.bookmarksbrowser.bean.GridBookmarkItem;
 import com.salton123.util.EventBusUtil;
 import com.salton123.utils.MaterialColors;

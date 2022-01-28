@@ -11,7 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.salton123.base.BaseDialogFragment;
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 import com.salton123.bookmarksbrowser.manager.BrowserManager;
 import com.salton123.util.ScreenUtils;
 import com.salton123.view.adapter.BrowserListAdapter;

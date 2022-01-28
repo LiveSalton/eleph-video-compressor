@@ -2,11 +2,12 @@ package com.salton123.eleph.video.compressor.task
 
 import android.os.Environment
 import android.util.Log
-import com.salton123.corelite.BuildConfig
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.utils.Utils
-import org.xutils.x
+import com.salton123.eleph.video.kt.executeByCached
+import com.salton123.eleph.video.kt.executeByIo
+import com.salton123.eleph.video.kt.log
 import java.io.File
 
 /**
@@ -19,12 +20,14 @@ object MediaFileScanTask {
     private val pathName = Environment.getExternalStorageDirectory().absolutePath
     private val videoList: MutableList<VideoItem> = mutableListOf()
     fun launch() {
-        x.task().run {
+        log("launch")
+        executeByIo {
+            log("exec find task")
             File(pathName).listFiles()?.forEach { stubFile ->
                 if (stubFile.isFile) {
                     assembleVideoInfo(stubFile)
                 } else if (stubFile.isDirectory) {
-                    x.task().run {
+                    executeByCached {
                         stubFile.walkTopDown().maxDepth(Int.MAX_VALUE).forEach { file ->
                             assembleVideoInfo(file)
                         }
@@ -41,21 +44,21 @@ object MediaFileScanTask {
         try {
             val filePath = file.absolutePath
             if (Utils.filterVideoBySuffix(file)) {
+                log("find media file:$filePath")
                 videoList.find { it.filePath == filePath }?.let {
-                    Log.i(TAG, "find the same item:${filePath}")
+                    log("find the same item:${filePath}")
                     if (!File(filePath).exists()) {
-                        x.task().run {
+                        executeByIo {
                             VideoDao.deleteVideo(it)
                         }
                     }
                 } ?: kotlin.run {
+                    log("addVideo:$filePath")
                     val videoItem = Utils.retrieveFile(file)
                     VideoDao.addVideo(videoItem)
                 }
             } else {
-                if (BuildConfig.APP_DEVELOP) {
-                    Log.d(TAG, "assembleVideoInfo:${filePath}")
-                }
+                log("other file:${filePath}")
             }
         } catch (ex: Throwable) {
             ex.printStackTrace()

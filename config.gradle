@@ -27,9 +27,9 @@ ext {
             saltonframeworkVersion  : "1.0.0.3",
             ijkplayerVersion        : "0.8.8",
             appLanguage             : "en",//# 说明：如果是相同资源放在res目录，如果是中文资源和英文资源，要分别存放在res_zh/res_en，并且不能存放同名资源在res
-            appDevelop              : false,//# 是否开发模式，true会打包raw文件
-            mobKey                : "2a05290556218",
-            mobSecret                : "bb9b478f3a54493bade5c7fab965a356"
+            appDevelop              : true,//# 是否开发模式，true会打包raw文件
+            mobKey                  : "2a05290556218",
+            mobSecret               : "bb9b478f3a54493bade5c7fab965a356"
     ]
 
     properyVersion = [

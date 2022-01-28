@@ -1,4 +1,4 @@
-package com.salton123.bookmarksbrowser;
+package com.salton123.eleph;
 
 import android.app.Application;
 

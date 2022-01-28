@@ -5,7 +5,7 @@ import android.text.format.Formatter
 import com.bumptech.glide.Glide
 import com.salton123.adapter.abslistview.CommonAdapter
 import com.salton123.adapter.abslistview.ViewHolder
-import com.salton123.bookmarksbrowser.R
+import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.model.VideoItem
 
 /**

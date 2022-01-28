@@ -1,6 +1,6 @@
 package com.salton123.utils;
 
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 
 /**
  * User: newSalton@outlook.com

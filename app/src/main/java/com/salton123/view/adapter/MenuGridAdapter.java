@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.salton123.adapter.abslistview.CommonAdapter;
 import com.salton123.adapter.abslistview.ViewHolder;
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 import com.salton123.bookmarksbrowser.bean.GridMenuItem;
 
 public class MenuGridAdapter extends CommonAdapter<GridMenuItem> {

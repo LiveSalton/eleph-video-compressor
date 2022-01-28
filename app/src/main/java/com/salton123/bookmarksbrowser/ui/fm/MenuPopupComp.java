@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.GridView;
 
 import com.salton123.base.BaseDialogFragment;
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 import com.salton123.bookmarksbrowser.bean.GridMenuItem;
 import com.salton123.util.ScreenUtils;
 import com.salton123.view.adapter.MenuGridAdapter;

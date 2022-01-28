@@ -5,7 +5,7 @@ import android.content.res.ColorStateList;
 
 import com.salton123.adapter.abslistview.CommonAdapter;
 import com.salton123.adapter.abslistview.ViewHolder;
-import com.salton123.bookmarksbrowser.R;
+import com.salton123.eleph.R;
 import com.salton123.bookmarksbrowser.bean.GridBookmarkItem;
 
 public class BookmarkGridAdapter extends CommonAdapter<GridBookmarkItem> {

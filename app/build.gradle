@@ -10,7 +10,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion as Integer
         targetSdkVersion rootProject.ext.android.targetSdkVersion as Integer
-        applicationId "com.salton123.bookmarksbrowser"
+        applicationId "com.salton123.eleph"
         versionName rootProject.ext.android.versionName
         versionCode rootProject.ext.android.versionCode as Integer
         ndk {
