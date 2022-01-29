@@ -80,6 +80,10 @@ class VideoListAdapter : BaseAdapter() {
         return view
     }
 
+    fun clear() {
+        dataList.clear()
+    }
+
     inner class TitleViewHolder(itemView: View) {
         var tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
     }

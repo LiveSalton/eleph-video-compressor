@@ -44,10 +44,7 @@ public class PermissionFeature extends Fragment implements IFeature {
     }
 
     public String[] getPermissionArr() {
-        return new String[]{
-                Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        };
+        return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 
     @Override
@@ -55,7 +52,7 @@ public class PermissionFeature extends Fragment implements IFeature {
 
     }
 
-    private boolean isPermissionGrant(Context context) {
+    public boolean isPermissionGrant(Context context) {
         boolean result = false;
         for (String item : permissions) {
             result &= context.checkPermission(item, Process.myPid(),

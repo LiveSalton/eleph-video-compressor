@@ -19,5 +19,6 @@ class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", nu
 
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        
     }
 }

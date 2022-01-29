@@ -20,3 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
  -ignorewarnings
+
+ -keep class com.salton123.eleph.video.compressor.model.** { *; }
+# -keep class org.xutils.db.** { *; }

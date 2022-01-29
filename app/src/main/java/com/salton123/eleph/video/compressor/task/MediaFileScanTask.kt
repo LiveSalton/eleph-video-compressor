@@ -1,7 +1,6 @@
 package com.salton123.eleph.video.compressor.task
 
 import android.os.Environment
-import android.util.Log
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.utils.Utils
@@ -9,6 +8,7 @@ import com.salton123.eleph.video.kt.executeByCached
 import com.salton123.eleph.video.kt.executeByIo
 import com.salton123.eleph.video.kt.log
 import java.io.File
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * Time:2021/8/24 6:13 下午
@@ -18,7 +18,8 @@ import java.io.File
 object MediaFileScanTask {
     private val TAG = "MediaFileScanTask"
     private val pathName = Environment.getExternalStorageDirectory().absolutePath
-    private val videoList: MutableList<VideoItem> = mutableListOf()
+    val videoList: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
+    var onDataSetChange: ((VideoItem) -> Unit)? = null
     fun launch() {
         log("launch")
         executeByIo {
@@ -35,6 +36,7 @@ object MediaFileScanTask {
                 }
             }
         }
+        VideoDao.findAll()?.let { videoList.addAll(it) }
     }
 
     /**
@@ -55,10 +57,12 @@ object MediaFileScanTask {
                 } ?: kotlin.run {
                     log("addVideo:$filePath")
                     val videoItem = Utils.retrieveFile(file)
+                    videoList.add(videoItem)
+                    onDataSetChange?.invoke(videoItem)
                     VideoDao.addVideo(videoItem)
                 }
             } else {
-                log("other file:${filePath}")
+//                log("other file:${filePath}")
             }
         } catch (ex: Throwable) {
             ex.printStackTrace()
