@@ -5,6 +5,7 @@ import android.media.MediaMetadataRetriever
 import android.text.TextUtils
 import android.util.Log
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.kt.log
 import org.xutils.x
 import java.io.File
 import java.text.SimpleDateFormat
@@ -22,6 +23,17 @@ object Utils {
     fun getDateTitle(timeMills: Long): String {
         val title = simpleDateFormat.format(timeMills)
         return title
+    }
+
+    fun getDateTime(timeMills: Long): Long {
+        try {
+            return timeMills - timeMills % (24 * 60 * 60 * 1000)
+//            return simpleDateFormat.parse(simpleDateFormat.format(timeMills)).time
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            log("getDateTime,timeMills:$timeMills")
+            return 0L
+        }
     }
 
     /**
@@ -79,6 +91,7 @@ object Utils {
             this.width = width
             this.height = height
             this.letter = dirName(file).first().toString()
+            this.dateTime = getDateTime(file.lastModified())
         }
     }
 

@@ -5,16 +5,12 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Process
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.salton123.base.BaseActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
-import com.salton123.eleph.video.compressor.model.ContentStubType
-import com.salton123.eleph.video.compressor.model.IMultiType
-import com.salton123.eleph.video.compressor.model.TYPE_TITLE
-import com.salton123.eleph.video.compressor.model.TitleType
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.kt.runOnUi
 
@@ -54,33 +50,15 @@ class HomeActivity : BaseActivity() {
         initListView()
     }
 
-    private val dataList: MutableList<IMultiType> = mutableListOf()
     private fun initListView() {
         recyclerView = findViewById(R.id.recyclerView)
         mAdapter = VideoRecyclerAdapter()
+        mAdapter.setHasStableIds(true)
         recyclerView.adapter = mAdapter
-        GridLayoutManager(this, 4).apply {
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return if (mAdapter.getItemViewType(position) == TYPE_TITLE) {
-                        4
-                    } else {
-                        2
-                    }
-                }
-            }
-            recyclerView.layoutManager = this
-        }
-        MediaFileScanTask.onDataSetChange = { map ->
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        MediaFileScanTask.onDataSetChange = { item ->
             runOnUi {
-                dataList.clear()
-                map.forEach {
-                    dataList.add(TitleType(it.key))
-                    it.value.forEach { item ->
-                        dataList.add(ContentStubType(item))
-                    }
-                }
-                mAdapter.setData(dataList)
+                mAdapter.add(item)
             }
         }
     }

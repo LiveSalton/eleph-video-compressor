@@ -19,8 +19,8 @@ import java.util.concurrent.CopyOnWriteArrayList
 object MediaFileScanTask {
     private val TAG = "MediaFileScanTask"
     private val pathName = Environment.getExternalStorageDirectory().absolutePath
-    val videoMap: ConcurrentHashMap<String, CopyOnWriteArrayList<VideoItem>> = ConcurrentHashMap()
-    var onDataSetChange: ((ConcurrentHashMap<String, CopyOnWriteArrayList<VideoItem>>) -> Unit)? = null
+    val videoMap: ConcurrentHashMap<Long, CopyOnWriteArrayList<VideoItem>> = ConcurrentHashMap()
+    var onDataSetChange: ((Long) -> Unit)? = null
     fun launch() {
         log("launch")
         executeByIo {
@@ -50,7 +50,7 @@ object MediaFileScanTask {
         val filePath = file.absolutePath
         if (Utils.filterVideoBySuffix(file)) {
             log("find media file:$filePath")
-            val title = Utils.getDateTitle(file.lastModified())
+            val title = Utils.getDateTime(file.lastModified())
             videoMap[title]?.apply {
                 //在集合中找
                 find { it.filePath == filePath }?.let {
@@ -83,7 +83,7 @@ object MediaFileScanTask {
     }
 
     private fun addVideoToMap(videoItem: VideoItem) {
-        val title = Utils.getDateTitle(videoItem.createdAt)
+        val title = videoItem.dateTime
         videoMap[title]?.apply {
             add(videoItem)
         } ?: kotlin.run {
@@ -91,6 +91,6 @@ object MediaFileScanTask {
             list.add(videoItem)
             videoMap[title] = list
         }
-        onDataSetChange?.invoke(videoMap)
+        onDataSetChange?.invoke(title)
     }
 }

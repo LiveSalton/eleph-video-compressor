@@ -24,28 +24,11 @@ public class VideoItem {
   @Column(name = "playedPosition")  public long playedPosition = 0;
   @Column(name = "letter")  public String letter = "";
   @Column(name = "compressProgress")  public int compressProgress = 0;
+  @Column(name = "dateTime")  public long dateTime = 0;
 
   public VideoItem() {
   }
-
-  public VideoItem(String filePath, String dirName, String name, String mimeType, long size, int width, int height,
-                   long duration, long createdAt, long updatedAt, long playedPosition, String letter,
-                   int compressProgress) {
-    this.filePath = filePath;
-    this.dirName = dirName;
-    this.name = name;
-    this.mimeType = mimeType;
-    this.size = size;
-    this.width = width;
-    this.height = height;
-    this.duration = duration;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-    this.playedPosition = playedPosition;
-    this.letter = letter;
-    this.compressProgress = compressProgress;
-  }
-
+  
   @Override
   public String toString() {
     return "VideoItem{" +
