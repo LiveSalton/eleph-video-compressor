@@ -7,6 +7,7 @@ import android.util.Log
 import com.salton123.eleph.video.compressor.model.VideoItem
 import org.xutils.x
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.Locale
 
 /**
@@ -16,7 +17,12 @@ import java.util.Locale
  * Description:
  */
 object Utils {
-    const val TAG = "Utils"
+    private const val TAG = "Utils"
+    private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    fun getDateTitle(timeMills: Long): String {
+        val title = simpleDateFormat.format(timeMills)
+        return title
+    }
 
     /**
      * 将毫秒数格式化为"##:##"的时间

@@ -24,7 +24,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="com.salton123.eleph.video.compressor.ui.MainActivity"
+            android:name="com.salton123.eleph.video.compressor.ui.HomeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"

@@ -60,32 +60,32 @@ class MainActivity : BaseActivity() {
         listView = findViewById(R.id.listView)
         mAdapter = VideoListAdapter()
         listView.adapter = mAdapter
-        MediaFileScanTask.onDataSetChange = {
-            Log.i(TAG, "$it")
-            dataMap[simpleDateFormat.format(it.createdAt)]?.apply {
-                add(it)
-            } ?: kotlin.run {
-                val data: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
-                data.add(it)
-                dataMap[simpleDateFormat.format(it.createdAt)] = data
-            }
-            mAdapter.clear()
-            dataMap.forEach {
-                mAdapter.add(TitleType(it.key))
-                mAdapter.add(ContentType(it.value))
-            }
-            mAdapter.notifyDataSetChanged()
-        }
-        MediaFileScanTask.videoList.forEach {
-            Log.i(TAG, "$it")
-            dataMap[simpleDateFormat.format(it.createdAt)]?.apply {
-                add(it)
-            } ?: kotlin.run {
-                val data: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
-                data.add(it)
-                dataMap[simpleDateFormat.format(it.createdAt)] = data
-            }
-        }
+//        MediaFileScanTask.onDataSetChange = {
+//            Log.i(TAG, "$it")
+//            dataMap[simpleDateFormat.format(it.createdAt)]?.apply {
+//                add(it)
+//            } ?: kotlin.run {
+//                val data: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
+//                data.add(it)
+//                dataMap[simpleDateFormat.format(it.createdAt)] = data
+//            }
+//            mAdapter.clear()
+//            dataMap.forEach {
+//                mAdapter.add(TitleType(it.key))
+//                mAdapter.add(ContentType(it.value))
+//            }
+//            mAdapter.notifyDataSetChanged()
+//        }
+//        MediaFileScanTask.videoList.forEach {
+//            Log.i(TAG, "$it")
+//            dataMap[simpleDateFormat.format(it.createdAt)]?.apply {
+//                add(it)
+//            } ?: kotlin.run {
+//                val data: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
+//                data.add(it)
+//                dataMap[simpleDateFormat.format(it.createdAt)] = data
+//            }
+//        }
         dataMap.forEach {
             mAdapter.add(TitleType(it.key))
             mAdapter.add(ContentType(it.value))

@@ -8,6 +8,7 @@ import com.salton123.eleph.video.kt.executeByCached
 import com.salton123.eleph.video.kt.executeByIo
 import com.salton123.eleph.video.kt.log
 import java.io.File
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
@@ -18,8 +19,8 @@ import java.util.concurrent.CopyOnWriteArrayList
 object MediaFileScanTask {
     private val TAG = "MediaFileScanTask"
     private val pathName = Environment.getExternalStorageDirectory().absolutePath
-    val videoList: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
-    var onDataSetChange: ((VideoItem) -> Unit)? = null
+    val videoMap: ConcurrentHashMap<String, CopyOnWriteArrayList<VideoItem>> = ConcurrentHashMap()
+    var onDataSetChange: ((ConcurrentHashMap<String, CopyOnWriteArrayList<VideoItem>>) -> Unit)? = null
     fun launch() {
         log("launch")
         executeByIo {
@@ -36,18 +37,23 @@ object MediaFileScanTask {
                 }
             }
         }
-        VideoDao.findAll()?.let { videoList.addAll(it) }
+        videoMap.clear()
+        VideoDao.findAll()?.forEach {
+            addVideoToMap(it)
+        }
     }
 
     /**
      * 从file中装配视频文件信息
      */
     private fun assembleVideoInfo(file: File) {
-        try {
-            val filePath = file.absolutePath
-            if (Utils.filterVideoBySuffix(file)) {
-                log("find media file:$filePath")
-                videoList.find { it.filePath == filePath }?.let {
+        val filePath = file.absolutePath
+        if (Utils.filterVideoBySuffix(file)) {
+            log("find media file:$filePath")
+            val title = Utils.getDateTitle(file.lastModified())
+            videoMap[title]?.apply {
+                //在集合中找
+                find { it.filePath == filePath }?.let {
                     log("find the same item:${filePath}")
                     if (!File(filePath).exists()) {
                         executeByIo {
@@ -55,17 +61,36 @@ object MediaFileScanTask {
                         }
                     }
                 } ?: kotlin.run {
-                    log("addVideo:$filePath")
-                    val videoItem = Utils.retrieveFile(file)
-                    videoList.add(videoItem)
-                    onDataSetChange?.invoke(videoItem)
-                    VideoDao.addVideo(videoItem)
+                    addVideo(file)
                 }
-            } else {
-//                log("other file:${filePath}")
+            } ?: kotlin.run {
+                addVideo(file)
             }
-        } catch (ex: Throwable) {
-            ex.printStackTrace()
+        } else {
+//            log("other file:${filePath}")
         }
+    }
+
+    private fun addVideo(file: File) {
+        try {
+            log("addVideo:$file")
+            val videoItem = Utils.retrieveFile(file)
+            addVideoToMap(videoItem)
+            VideoDao.addVideo(videoItem)
+        } catch (ex: Exception) {
+            //
+        }
+    }
+
+    private fun addVideoToMap(videoItem: VideoItem) {
+        val title = Utils.getDateTitle(videoItem.createdAt)
+        videoMap[title]?.apply {
+            add(videoItem)
+        } ?: kotlin.run {
+            val list: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
+            list.add(videoItem)
+            videoMap[title] = list
+        }
+        onDataSetChange?.invoke(videoMap)
     }
 }

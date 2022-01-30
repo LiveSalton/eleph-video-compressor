@@ -45,4 +45,11 @@ public class VideoItem {
     this.letter = letter;
     this.compressProgress = compressProgress;
   }
+
+  @Override
+  public String toString() {
+    return "VideoItem{" +
+        "name='" + name + '\'' +
+        '}';
+  }
 }

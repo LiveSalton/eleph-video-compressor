@@ -38,7 +38,7 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
 //            minifyEnabled true
 //            shrinkResources true
 //            zipAlignEnabled true

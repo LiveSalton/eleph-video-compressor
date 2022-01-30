@@ -34,6 +34,12 @@ fun Any.executeByIo(task: () -> Unit) {
 //    })
 }
 
+fun Any.runOnUi(task: () -> Unit) {
+    x.task().post {
+        task.invoke()
+    }
+}
+
 fun Any.log(msg: String) {
     if (BuildConfig.APP_DEVELOP) {
         Log.i("eleph-compressor", msg)
