@@ -1,0 +1,10 @@
+<resources>
+    <string name="if_search">&#xe61f;</string>
+    <string name="if_jingyu">&#xe6a7;</string>
+    <string name="if_more">&#xe686;</string>
+    <string name="if_home">&#xe603;</string>
+    <string name="if_retangel">&#xe648;</string>
+    <string name="if_right_arrow">&#xe642;</string>
+    <string name="if_menu">&#xe630;</string>
+    <string name="if_left_arrow">&#xe628;</string>
+</resources>

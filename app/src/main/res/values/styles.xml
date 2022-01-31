@@ -5,20 +5,16 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:scrollbarSize">4.0dip</item>
-        <!--        <item name="android:fitsSystemWindows">false</item>-->
-        <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_thumb</item>
-        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
         <item name="android:listSelector">@color/color_00ffffff</item>
     </style>
 
     <style name="SplashTheme" parent="@style/AppTheme">
         <item name="android:windowBackground">@drawable/windows_background</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <!--        <item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:fitsSystemWindows">false</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
 
