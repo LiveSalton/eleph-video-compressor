@@ -4,11 +4,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.holder.VideoRecyclerViewHolder
-import com.salton123.eleph.video.compressor.model.TYPE_TITLE
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.utils.Utils
+import com.salton123.eleph.video.compressor.widget.GridSpacingItemDecoration
+import com.salton123.util.ScreenUtils
 
 /**
  * Time:2022/1/29 11:42 上午
@@ -33,21 +35,24 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>() {
     override fun onBindViewHolder(holder: VideoRecyclerViewHolder, position: Int) {
         val item = dataList[position]
         val context = holder.itemView.context
+        val recyclerView = holder.recyclerView
         val mAdapter = RecyclerContentAdapter()
-        holder.recyclerView.adapter = mAdapter
-        holder.tvTitle.text = Utils.getDateTitle(item)
-        GridLayoutManager(context, 4).apply {
-            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return if (mAdapter.getItemViewType(position) == TYPE_TITLE) {
-                        4
-                    } else {
-                        2
-                    }
-                }
+        mAdapter.setHasStableIds(true)
+        recyclerView.adapter = mAdapter
+        (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+        var mSplitItemDecoration: GridSpacingItemDecoration? = null
+        if (recyclerView.itemDecorationCount == 0) {
+            mSplitItemDecoration = GridSpacingItemDecoration(2, ScreenUtils.dp2px(8f), true)
+            recyclerView.addItemDecoration(mSplitItemDecoration)
+        } else {
+            if (mSplitItemDecoration != null) {
+                recyclerView.removeItemDecoration(mSplitItemDecoration)
+                mSplitItemDecoration = GridSpacingItemDecoration(2, ScreenUtils.dp2px(8f), false)
+                recyclerView.addItemDecoration(mSplitItemDecoration)
             }
-            holder.recyclerView.layoutManager = this
         }
+        holder.tvTitle.text = Utils.getDateTitle(item)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         MediaFileScanTask.videoMap[item]?.let { mAdapter.setData(it) }
     }
 

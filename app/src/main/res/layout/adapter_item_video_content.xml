@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="10dp">
+    android:orientation="vertical">
 
-    <ImageView
+    <com.github.siyamed.shapeimageview.RoundedImageView
         android:id="@+id/ivThumbnail"
-        android:src="@drawable/ic_placeholder"
         android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:layout_height="80dp" />
+        android:src="@drawable/ic_placeholder"
+        app:siBorderAlpha="0.0"
+        app:siBorderColor="@android:color/transparent"
+        app:siBorderWidth="0dp"
+        app:siForeground="@android:color/transparent"
+        app:siRadius="5dp"
+        app:siSquare="false" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -27,9 +30,9 @@
         android:gravity="center_vertical|start"
         android:lines="1"
         android:text="最新合集"
-        android:textColor="@color/black"
+        android:textColor="@color/black90"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        />
 
     <TextView
         android:id="@+id/tvSubTitle"
@@ -40,7 +43,7 @@
         android:layout_marginBottom="5dp"
         android:gravity="center_vertical|start"
         android:lines="1"
-        android:textColor="@color/black"
+        android:textColor="@color/black50"
         android:textSize="12sp"
         tools:text="www.baidu.com" />
 </LinearLayout>

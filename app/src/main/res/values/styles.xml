@@ -5,7 +5,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:scrollbarSize">4.0dip</item>
-<!--        <item name="android:fitsSystemWindows">false</item>-->
+        <!--        <item name="android:fitsSystemWindows">false</item>-->
         <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_thumb</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_thumb</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>
@@ -15,7 +15,7 @@
     <style name="SplashTheme" parent="@style/AppTheme">
         <item name="android:windowBackground">@drawable/windows_background</item>
         <item name="android:windowIsTranslucent">false</item>
-<!--        <item name="android:windowFullscreen">true</item>-->
+        <!--        <item name="android:windowFullscreen">true</item>-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:fitsSystemWindows">true</item>
@@ -39,4 +39,14 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <declare-styleable name="ShaderImageView">
+        <attr name="siSquare" format="boolean" />
+        <attr name="siBorderColor" format="color" />
+        <attr name="siBorderWidth" format="dimension" />
+        <attr name="siBorderAlpha" format="float" />
+        <attr name="siForeground" format="integer|reference" />
+        <!-- Rounded Image View -->
+        <attr name="siRadius" format="dimension" />
+        <attr name="siStrokeMiter" format="dimension" />
+    </declare-styleable>
 </resources>
