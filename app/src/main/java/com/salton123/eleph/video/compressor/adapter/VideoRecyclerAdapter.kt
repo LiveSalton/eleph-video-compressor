@@ -17,14 +17,33 @@ import com.salton123.util.ScreenUtils
  * Author:
  * Description:
  */
-class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>() {
+class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IAdapterDiffer {
+
     private var dataList: MutableList<Long> = mutableListOf()
+//    private var dataList: MutableList<Long> by Delegates.observable(mutableListOf()) { _, old, new ->
+//        onDiff(old, new,
+//            { o, n -> o == n },
+//            { o, n -> o == n })
+//    }
+
+//    fun add(item: Long) {
+//        if (!dataList.contains(item)) {
+//            dataList.add(item)
+//            dataList.sortByDescending { it }
+//        }
+//    }
+
 
     fun add(item: Long) {
         if (!dataList.contains(item)) {
             dataList.add(item)
             dataList.sortByDescending { it }
         }
+        notifyDataSetChanged()
+    }
+
+    fun setData(dataList: MutableList<Long>) {
+        this.dataList = dataList
         notifyDataSetChanged()
     }
 
@@ -37,6 +56,7 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>() {
         val context = holder.itemView.context
         val recyclerView = holder.recyclerView
         val mAdapter = RecyclerContentAdapter()
+        holder.tvTitle.text = Utils.getDateTitle(item)
         mAdapter.setHasStableIds(true)
         recyclerView.adapter = mAdapter
         (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
@@ -51,9 +71,13 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>() {
                 recyclerView.addItemDecoration(mSplitItemDecoration)
             }
         }
-        holder.tvTitle.text = Utils.getDateTitle(item)
+
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-        MediaFileScanTask.videoMap[item]?.let { mAdapter.setData(it) }
+//        MediaFileScanTask.onDataSetChange = { type, data ->
+//            if (type == item) {
+//                data?.let { mAdapter.setData(it) }
+//            }
+//        }
     }
 
     override fun getItemCount(): Int = dataList.size
