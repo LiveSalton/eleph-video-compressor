@@ -53,7 +53,6 @@ class HomeActivity : BaseActivity() {
     private fun initListView() {
         recyclerView = findViewById(R.id.recyclerView)
         mAdapter = VideoRecyclerAdapter()
-        mAdapter.setHasStableIds(true)
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         MediaFileScanTask.onDataSetChange = { item ->

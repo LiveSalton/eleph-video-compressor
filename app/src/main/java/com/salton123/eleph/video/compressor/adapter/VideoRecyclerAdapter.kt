@@ -57,7 +57,7 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
         val recyclerView = holder.recyclerView
         val mAdapter = RecyclerContentAdapter()
         holder.tvTitle.text = Utils.getDateTitle(item)
-        mAdapter.setHasStableIds(true)
+//        mAdapter.setHasStableIds(true)
         recyclerView.adapter = mAdapter
         (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         var mSplitItemDecoration: GridSpacingItemDecoration? = null
@@ -73,6 +73,9 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
         }
 
         recyclerView.layoutManager = GridLayoutManager(context, 2)
+        MediaFileScanTask.videoMap[item]?.let {
+            mAdapter.setData(it)
+        }
 //        MediaFileScanTask.onDataSetChange = { type, data ->
 //            if (type == item) {
 //                data?.let { mAdapter.setData(it) }

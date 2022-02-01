@@ -74,6 +74,9 @@ object MediaFileScanTask {
     private fun addVideo(file: File) {
         try {
             log("addVideo:$file")
+            if (file.length() < 1024 * 1024) {
+                return
+            }
             val videoItem = Utils.retrieveFile(file)
             addVideoToMap(videoItem)
             VideoDao.addVideo(videoItem)
@@ -90,7 +93,7 @@ object MediaFileScanTask {
             val list: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
             list.add(videoItem)
             videoMap[title] = list
+            onDataSetChange?.invoke(title)
         }
-        onDataSetChange?.invoke(title)
     }
 }
