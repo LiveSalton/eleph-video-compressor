@@ -1,7 +1,9 @@
 <resources>
+    <string name="if_launcher">&#xe60d;</string>
+    <string name="if_queue_in">&#xe693;</string>
+    <string name="if_more">&#xe6a5;</string>
+
     <string name="if_search">&#xe61f;</string>
-    <string name="if_jingyu">&#xe6a7;</string>
-    <string name="if_more">&#xe686;</string>
     <string name="if_home">&#xe603;</string>
     <string name="if_retangel">&#xe648;</string>
     <string name="if_right_arrow">&#xe642;</string>

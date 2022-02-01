@@ -42,11 +42,11 @@
                 <com.salton123.view.IconFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:gravity="center"
-                    android:text="@string/if_search"
+                    android:text="@string/if_launcher"
                     android:textColor="@color/black55"
-                    android:textSize="14sp" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/etInput"
@@ -66,13 +66,13 @@
             <com.salton123.view.IconFontTextView
                 android:id="@+id/tvTitleSearch"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
-                android:text="@string/if_more"
+                android:text="@string/if_queue_in"
                 android:textColor="@color/black55"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </FrameLayout>
 
