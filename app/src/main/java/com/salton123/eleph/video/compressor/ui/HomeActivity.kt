@@ -55,9 +55,10 @@ class HomeActivity : BaseActivity() {
         mAdapter = VideoRecyclerAdapter()
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-        MediaFileScanTask.onDataSetChange = { item ->
+        MediaFileScanTask.onTypeListChange = { list ->
             runOnUi {
-                mAdapter.add(item)
+                mAdapter.setData(list)
+                recyclerView.scrollToPosition(0)
             }
         }
     }

@@ -11,6 +11,7 @@ import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.utils.Utils
 import com.salton123.eleph.video.compressor.widget.GridSpacingItemDecoration
 import com.salton123.util.ScreenUtils
+import kotlin.properties.Delegates
 
 /**
  * Time:2022/1/29 11:42 上午
@@ -19,32 +20,14 @@ import com.salton123.util.ScreenUtils
  */
 class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IAdapterDiffer {
 
-    private var dataList: MutableList<Long> = mutableListOf()
-//    private var dataList: MutableList<Long> by Delegates.observable(mutableListOf()) { _, old, new ->
-//        onDiff(old, new,
-//            { o, n -> o == n },
-//            { o, n -> o == n })
-//    }
-
-//    fun add(item: Long) {
-//        if (!dataList.contains(item)) {
-//            dataList.add(item)
-//            dataList.sortByDescending { it }
-//        }
-//    }
-
-
-    fun add(item: Long) {
-        if (!dataList.contains(item)) {
-            dataList.add(item)
-            dataList.sortByDescending { it }
-        }
-        notifyDataSetChanged()
+    private var dataList: MutableList<Long> by Delegates.observable(mutableListOf()) { _, old, new ->
+        onDiff(old, new,
+            { o, n -> o == n },
+            { o, n -> o == n })
     }
 
     fun setData(dataList: MutableList<Long>) {
         this.dataList = dataList
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoRecyclerViewHolder {
@@ -76,11 +59,11 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
         MediaFileScanTask.videoMap[item]?.let {
             mAdapter.setData(it)
         }
-//        MediaFileScanTask.onDataSetChange = { type, data ->
-//            if (type == item) {
-//                data?.let { mAdapter.setData(it) }
-//            }
-//        }
+        MediaFileScanTask.onDataListChange = { type, data ->
+            if (type == item) {
+                data.let { mAdapter.setData(it) }
+            }
+        }
     }
 
     override fun getItemCount(): Int = dataList.size

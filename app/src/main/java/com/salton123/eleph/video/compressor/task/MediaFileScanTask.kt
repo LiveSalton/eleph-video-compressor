@@ -20,7 +20,8 @@ object MediaFileScanTask {
     private val TAG = "MediaFileScanTask"
     private val pathName = Environment.getExternalStorageDirectory().absolutePath
     val videoMap: ConcurrentHashMap<Long, CopyOnWriteArrayList<VideoItem>> = ConcurrentHashMap()
-    var onDataSetChange: ((Long) -> Unit)? = null
+    var onTypeListChange: ((MutableList<Long>) -> Unit)? = null
+    var onDataListChange: ((Long, CopyOnWriteArrayList<VideoItem>) -> Unit)? = null
     fun launch() {
         log("launch")
         executeByIo {
@@ -89,11 +90,14 @@ object MediaFileScanTask {
         val title = videoItem.dateTime
         videoMap[title]?.apply {
             add(videoItem)
+            onDataListChange?.invoke(title, this)
         } ?: kotlin.run {
             val list: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
             list.add(videoItem)
             videoMap[title] = list
-            onDataSetChange?.invoke(title)
+            val types = videoMap.keys.sortedDescending().toMutableList()
+            onTypeListChange?.invoke(types)
+            onDataListChange?.invoke(title, list)
         }
     }
 }
