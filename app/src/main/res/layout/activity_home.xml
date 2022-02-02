@@ -20,15 +20,6 @@
             android:orientation="horizontal"
             android:paddingStart="10dp"
             android:paddingEnd="10dp">
-            <!--            <TextView-->
-            <!--                android:id="@+id/tvSortOrder"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_marginEnd="3dp"-->
-            <!--                android:drawableLeft="@drawable/ic_sort"-->
-            <!--                android:gravity="center"-->
-            <!--                android:textColor="@color/black55"-->
-            <!--                android:textSize="14sp" />-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="30dp"
@@ -64,7 +55,7 @@
             </LinearLayout>
 
             <com.salton123.view.IconFontTextView
-                android:id="@+id/tvTitleSearch"
+                android:id="@+id/tvMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.salton123.base.BaseActivity;
+import com.salton123.base.DelegateActivity;
 import com.salton123.base.feature.ImmersionFeature;
 import com.salton123.base.feature.PermissionFeature;
 import com.salton123.video.bean.LiveAssetCategoryList;
@@ -23,7 +23,7 @@ import com.salton123.view.ShowListWheelView;
  * ModifyTime: 14:15
  * Description:
  */
-public class VideoPlayActivity extends BaseActivity implements RequestUtil.HttpResponseCallback {
+public class VideoPlayActivity extends DelegateActivity implements RequestUtil.HttpResponseCallback {
     private ImmersionFeature mImmersionFeature;
     private static final String TAG = "VideoPlayActivity";
     private VideoViewWrapper videoPlayer;

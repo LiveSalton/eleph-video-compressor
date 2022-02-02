@@ -4,10 +4,11 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Process
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.salton123.base.BaseActivity
+import com.salton123.base.DelegateActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
@@ -20,13 +21,14 @@ import com.salton123.eleph.video.kt.runOnUi
  * Description:
  */
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : DelegateActivity() {
     private val TAG = "HomeActivity"
     private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private val REQUEST_CODE = 101
     override fun getLayout(): Int = R.layout.activity_home
     private lateinit var mImmersionFeature: ImmersionFeature
     private lateinit var recyclerView: RecyclerView
+    private lateinit var tvMore: TextView
     private lateinit var mAdapter: VideoRecyclerAdapter
     override fun initVariable(savedInstanceState: Bundle?) {
         mImmersionFeature = ImmersionFeature(this)
@@ -52,6 +54,7 @@ class HomeActivity : BaseActivity() {
 
     private fun initListView() {
         recyclerView = findViewById(R.id.recyclerView)
+        tvMore = findViewById(R.id.tvMore)
         mAdapter = VideoRecyclerAdapter()
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -60,6 +63,9 @@ class HomeActivity : BaseActivity() {
                 mAdapter.setData(list)
                 recyclerView.scrollToPosition(0)
             }
+        }
+        tvMore.setOnClickListener {
+            openActivity(VideoCompressListActivity::class.java, Bundle())
         }
     }
 

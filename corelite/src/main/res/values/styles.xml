@@ -16,11 +16,11 @@
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
 
-    <style name="windowAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter_animation</item>
-        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit_animation</item>
-        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter_animation</item>
-        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit_animation</item>
+    <style name="windowAnimation" parent="@android:style/Animation">　
+        <item name="android:activityOpenEnterAnimation">@anim/anim_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/back_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/back_exit</item>
     </style>
 
     <style name="GeneralDialog" parent="android:style/Theme.Holo.Light.Dialog">

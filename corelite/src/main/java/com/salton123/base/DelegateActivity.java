@@ -17,7 +17,7 @@ import java.util.List;
  * ModifyTime: 19:01
  * Description:
  */
-public abstract class BaseActivity extends Activity implements IComponentLife {
+public abstract class DelegateActivity extends Activity implements IComponentLife {
     private ActivityDelegate mActivityDelegate = new ActivityDelegate(this);
     private List<IFeature> mFeatures = new ArrayList<>();
 

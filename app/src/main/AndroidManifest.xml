@@ -30,6 +30,13 @@
             android:screenOrientation="portrait"
             tools:targetApi="n" />
         <activity
+            android:name=".video.compressor.ui.VideoCompressListActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:resizeableActivity="false"
+            android:screenOrientation="portrait"
+            tools:targetApi="n" />
+
+        <activity
             android:name="com.salton123.eleph.video.compressor.ui.SplashActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:hardwareAccelerated="true"
