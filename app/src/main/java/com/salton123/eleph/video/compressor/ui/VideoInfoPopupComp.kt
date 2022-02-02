@@ -7,7 +7,6 @@ import android.text.format.Formatter
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.arthenica.ffmpegkit.MediaInformationSession
@@ -53,6 +52,9 @@ class VideoInfoPopupComp : BaseDialogFragment() {
             f<TextView>(R.id.tvPathContent).text = filePath
             f<TextView>(R.id.tvDurationContent).text = Utils.formatTime(duration)
             f<TextView>(R.id.tvDateContent).text = simpleDateFormat.format(createdAt)
+            f<TextView>(R.id.tvClose).setOnClickListener {
+                dismissAllowingStateLoss()
+            }
         }
 
         val llMoreContent = f<LinearLayout>(R.id.llMoreContent)
@@ -118,7 +120,11 @@ class VideoInfoPopupComp : BaseDialogFragment() {
         ScreenUtils.hideNavigationBar(window)
         val params = window.attributes
         params.gravity = Gravity.CENTER
-        params.width = WindowManager.LayoutParams.MATCH_PARENT
+        val width = ScreenUtils.getScreenWidth() - ScreenUtils.dp2px(60f)
+//        val height = ScreenUtils.getScreenHeight() - ScreenUtils.dp2px(80f)
+//        params.width = WindowManager.LayoutParams.MATCH_PARENT
+        params.width = width
+//        params.height = height
         window.attributes = params
         window.setWindowAnimations(R.style.slide_popup_ani)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
