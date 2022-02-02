@@ -37,7 +37,7 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
         val item = dataList[position]
         val context = holder.itemView.context
         holder.tvTitle.text = item.name
-        holder.tvProgress.text = "${item.compressProgress}%"
+        holder.tvProgress.text = "${item.squeezeProgress}%"
         holder.tvSubTitle.text = Formatter.formatFileSize(context, item.size)
         Glide.with(context).load(item.filePath)
             .thumbnail(0.3f)

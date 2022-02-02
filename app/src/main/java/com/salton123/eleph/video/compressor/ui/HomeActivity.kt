@@ -65,7 +65,7 @@ class HomeActivity : DelegateActivity() {
             }
         }
         tvMore.setOnClickListener {
-            openActivity(VideoCompressListActivity::class.java, Bundle())
+            openActivity(SqueezeRecyclerActivity::class.java, Bundle())
         }
     }
 

@@ -25,9 +25,9 @@ public class VideoItem implements Serializable {
   @Column(name = "updatedAt")  public long updatedAt = 0;
   @Column(name = "playedPosition")  public long playedPosition = 0;
   @Column(name = "letter")  public String letter = "";
-  @Column(name = "compressProgress")  public int compressProgress = 0;
   @Column(name = "dateTime")  public long dateTime = 0;
-
+  @Column(name = "squeezeProgress")  public int squeezeProgress = 0;
+  @Column(name = "squeezeState") public int squeezeState = 0;   //0 default 1 ing 2 ed
   public VideoItem() {
   }
 

@@ -30,7 +30,7 @@
             android:screenOrientation="portrait"
             tools:targetApi="n" />
         <activity
-            android:name=".video.compressor.ui.VideoCompressListActivity"
+            android:name=".video.compressor.ui.SqueezeRecyclerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
