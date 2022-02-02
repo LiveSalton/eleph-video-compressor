@@ -8,18 +8,36 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.github.siyamed.shapeimageview.RoundedImageView
-        android:id="@+id/ivThumbnail"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_placeholder"
-        app:siBorderAlpha="0.0"
-        app:siBorderColor="@android:color/transparent"
-        app:siBorderWidth="0dp"
-        app:siForeground="@android:color/transparent"
-        app:siRadius="5dp"
-        app:siSquare="false" />
+        android:layout_height="wrap_content">
+
+        <com.github.siyamed.shapeimageview.RoundedImageView
+            android:id="@+id/ivThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_placeholder"
+            app:siBorderAlpha="0.0"
+            app:siBorderColor="@android:color/transparent"
+            app:siBorderWidth="0dp"
+            app:siForeground="@android:color/transparent"
+            app:siRadius="5dp"
+            app:siSquare="false" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_progress_area"
+            android:padding="10dp"
+            android:text="10%"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

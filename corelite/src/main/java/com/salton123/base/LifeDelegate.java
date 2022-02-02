@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.salton123.corelite.R;
 
+import androidx.annotation.Nullable;
+
 /**
  * User: newSalton@outlook.com
  * Date: 2019/3/19 10:13
@@ -27,7 +29,7 @@ public abstract class LifeDelegate {
         this.mComponentLife = componentLife;
     }
 
-    void onCreate(Bundle saveInstanceState) {
+    void onCreate(@Nullable Bundle saveInstanceState) {
         mComponentLife.initVariable(saveInstanceState);
     }
 

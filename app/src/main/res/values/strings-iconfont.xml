@@ -2,8 +2,11 @@
     <string name="if_launcher">&#xe60d;</string>
     <string name="if_queue_in">&#xe693;</string>
     <string name="if_more">&#xe6a5;</string>
+    <string name="if_arrow_right">&#xe743;</string>
+    <string name="if_arrow_left">&#xe744;</string>
+    <string name="if_arrow_up">&#xe745;</string>
+    <string name="if_arrow_down">&#xe7b2;</string>
 
-    <string name="if_search">&#xe61f;</string>
     <string name="if_home">&#xe603;</string>
     <string name="if_retangel">&#xe648;</string>
     <string name="if_right_arrow">&#xe642;</string>

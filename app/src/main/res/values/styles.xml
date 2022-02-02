@@ -38,4 +38,9 @@
         <attr name="siRadius" format="dimension" />
         <attr name="siStrokeMiter" format="dimension" />
     </declare-styleable>
+
+    <style name="slide_popup_ani">
+        <item name="android:windowEnterAnimation">@anim/fragment_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/fragment_slide_down</item>
+    </style>
 </resources>

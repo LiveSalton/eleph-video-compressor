@@ -54,7 +54,6 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
                 recyclerView.addItemDecoration(mSplitItemDecoration)
             }
         }
-
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         MediaFileScanTask.videoMap[item]?.let {
             mAdapter.setData(it)

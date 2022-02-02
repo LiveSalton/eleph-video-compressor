@@ -1,16 +1,16 @@
 package com.salton123.eleph.video.compressor.adapter
 
+import android.app.Activity
+import android.os.Bundle
 import android.text.format.Formatter
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.holder.ContentStubViewHolder
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.compressor.ui.VideoInfoPopupComp
 import com.salton123.eleph.video.compressor.utils.Utils
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.properties.Delegates
@@ -37,11 +37,27 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
         val item = dataList[position]
         val context = holder.itemView.context
         holder.tvTitle.text = item.name
-        holder.tvSubTitle.text = Formatter.formatFileSize(context, item.size) + "," + Utils.getDateTitle(item.dateTime)
+        holder.tvProgress.text = "${item.compressProgress}%"
+        holder.tvSubTitle.text = Formatter.formatFileSize(context, item.size)
         Glide.with(context).load(item.filePath)
             .thumbnail(0.3f)
             .placeholder(R.drawable.ic_placeholder)
             .into(holder.ivThumbnail)
+        holder.itemView.setOnClickListener {
+            VideoInfoPopupComp().apply {
+                arguments = Bundle().apply {
+                    putString("filePath", item.filePath)
+                    putSerializable("videoItem", item)
+                }
+                show((context as Activity).fragmentManager, "VideoInfoPopupComp")
+            }
+//            FFmpegCompressor.compress(item.filePath) {
+//                runOnUi {
+//                    item.compressProgress = it
+//                    notifyItemChanged(position)
+//                }
+//            }
+        }
     }
 
     override fun getItemCount(): Int = dataList.size

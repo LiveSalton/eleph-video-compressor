@@ -3,13 +3,15 @@ package com.salton123.eleph.video.compressor.model;
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
+import java.io.Serializable;
+
 /**
  * Time:2022/1/27 14:59
  * Author:wujinsheng1
  * Description:
  */
 @Table(name = "video", onCreated = "CREATE UNIQUE INDEX index_name ON video(id,filePath)")
-public class VideoItem {
+public class VideoItem implements Serializable {
   @Column(name = "id", isId = true) private int id;
   @Column(name = "filePath")  public String filePath = "";
   @Column(name = "dirName")  public String dirName = "";
@@ -28,7 +30,7 @@ public class VideoItem {
 
   public VideoItem() {
   }
-  
+
   @Override
   public String toString() {
     return "VideoItem{" +

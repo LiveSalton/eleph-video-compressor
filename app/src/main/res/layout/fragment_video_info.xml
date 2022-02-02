@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:background="@color/black30">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+
+            android:background="@drawable/bg_video_info"
+            android:orientation="vertical"
+            android:paddingStart="30dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/information"
+                android:textColor="@color/color_4caf50_material"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Title"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvTitleContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    tools:text="hello123212131.mp4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvResolution"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Resolution"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvResolutionContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+
+                    tools:text="1920x1080" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvSize"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Size"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvSizeContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    tools:text="62.74MB" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvFormat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Format"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvFormatContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    tools:text="video/mp4" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvPath"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Path"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvPathContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:lines="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    tools:text="/sdcard/0/Camera" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Duration"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvDurationContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+
+                    tools:text="00:21" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Date"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvDateContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    tools:text="2022-01-31 09:24:24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:gravity="center_vertical"
+                    android:text="More"
+                    android:textColor="@color/color_4caf50_material"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.salton123.view.IconFontTextView
+                    android:id="@+id/tvMoreArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:gravity="center_vertical"
+                    android:text="@string/if_arrow_right"
+                    android:textColor="@color/color_4caf50_material"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMoreContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stream 1"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvVideoType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Type"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvVideoTypeContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="video" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvVideoProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Profile"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvVideoProfileContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="High" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvVideoResolution"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Frame rate"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvVideoResolutionContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="30.0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvVideoBitrate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Bit rate"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvVideoBitrateContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="30.0" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvVideoTotalFrame"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Total frame"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvVideoTotalFrameContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="30.0" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="Stream 2"
+                    android:textColor="@color/black55"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Type"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioTypeContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="audio" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Profile"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioProfileContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="LC" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioSampleRate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Sample rate"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioSampleRateContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="48000HZ" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioBitRate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Bit rate"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioBitRateContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="48000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioChannel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Channel"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioChannelContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="Stereo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvAudioLanguage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="Language"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvAudioLanguageContent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:textColor="@color/black55"
+                        android:textSize="14sp"
+                        tools:text="Total Frame" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
