@@ -1,8 +1,8 @@
-package com.salton123.eleph;
+package com.salton123.eleph
 
-import android.app.Application;
-
-import org.xutils.x;
+import android.app.Application
+import com.salton123.manager.ActivityLifeCycleManager
+import org.xutils.x
 
 /**
  * User: newSalton@outlook.com
@@ -10,15 +10,10 @@ import org.xutils.x;
  * ModifyTime: 16:11
  * Description:
  */
-public class XApp extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        x.Ext.init(this);
-        // Picasso.setSingletonInstance(
-        //     new Picasso.Builder(this)
-        //         .addRequestHandler(new VideoRequestHandler())
-        //         .build()
-        // );
+class XApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        x.Ext.init(this)
+        ActivityLifeCycleManager.INSTANCE.init(this)
     }
 }

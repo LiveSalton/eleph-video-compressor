@@ -7,6 +7,10 @@
     <string name="if_arrow_up">&#xe745;</string>
     <string name="if_arrow_down">&#xe7b2;</string>
     <string name="if_arrow_backward">&#xe755;</string>
+    <string name="if_play">&#xe67a;</string>
+    <string name="if_write">&#xe62e;</string>
+    <string name="if_info">&#xe77e;</string>
+    <string name="if_delete">&#xe67e;</string>
 
     <string name="if_home">&#xe603;</string>
     <string name="if_retangel">&#xe648;</string>

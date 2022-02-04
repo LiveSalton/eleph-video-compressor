@@ -7,6 +7,7 @@
         <item name="android:fitsSystemWindows">false</item>
         <item name="android:windowAnimationStyle">@style/windowAnimation</item>
         <item name="android:listSelector">@color/color_00ffffff</item>
+        <item name="android:colorControlHighlight">@color/color_ff6c6c6c</item>
     </style>
 
     <style name="SplashTheme" parent="android:Theme.Light.NoTitleBar">

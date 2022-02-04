@@ -1,5 +1,7 @@
 package com.salton123.eleph.video.compressor.adapter
 
+import android.app.Activity
+import android.os.Bundle
 import android.text.format.Formatter
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.holder.ContentStubViewHolder
-import com.salton123.eleph.video.compressor.model.SqueezeProp
 import com.salton123.eleph.video.compressor.model.VideoItem
-import com.salton123.eleph.video.compressor.task.FFmpegCompressor
-import com.salton123.eleph.video.kt.runOnUi
+import com.salton123.eleph.video.compressor.ui.VideoMenuPopupComp
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.properties.Delegates
 
@@ -52,27 +52,28 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
             .placeholder(R.drawable.ic_placeholder)
             .into(holder.ivThumbnail)
         holder.itemView.setOnClickListener {
-//            VideoInfoPopupComp().apply {
-//                arguments = Bundle().apply {
-//                    putString("filePath", item.filePath)
-//                    putSerializable("videoItem", item)
-//                }
-//                show((context as Activity).fragmentManager, "VideoInfoPopupComp")
-//            }
-            item.squeezeState = 1
-            var height = (item.height / 2) - (item.height / 2) % 2
-            var width = (item.width / 2) - (item.width / 2) % 2
-            FFmpegCompressor.squeeze(SqueezeProp(item.filePath, scale = "$width:$height")) {
-                runOnUi {
-                    item.squeezeProgress = it
-                    if (it == 100) {
-                        item.squeezeState = 2
-                    } else if (it < 0) {
-                        item.squeezeState = 0
-                    }
-                    notifyItemChanged(position)
+            VideoMenuPopupComp().apply {
+                arguments = Bundle().apply {
+                    putString("filePath", item.filePath)
+                    putSerializable("videoItem", item)
                 }
+                show((context as Activity).fragmentManager, "VideoMenuPopupComp")
             }
+
+//            item.squeezeState = 1
+//            var height = (item.height / 2) - (item.height / 2) % 2
+//            var width = (item.width / 2) - (item.width / 2) % 2
+//            FFmpegCompressor.squeeze(SqueezeProp(item.filePath, scale = "$width:$height")) {
+//                runOnUi {
+//                    item.squeezeProgress = it
+//                    if (it == 100) {
+//                        item.squeezeState = 2
+//                    } else if (it < 0) {
+//                        item.squeezeState = 0
+//                    }
+//                    notifyItemChanged(position)
+//                }
+//            }
 //            FFmpegCompressor.compress(item.filePath) {
 //                runOnUi {
 //                    item.compressProgress = it

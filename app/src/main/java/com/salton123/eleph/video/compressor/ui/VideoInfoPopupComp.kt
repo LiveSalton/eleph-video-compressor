@@ -39,11 +39,10 @@ class VideoInfoPopupComp : BaseDialogFragment() {
 
     var isOpenMore = false
     var session: MediaInformationSession? = null
-    var filePath = ""
+    private var videoItem: VideoItem? = null
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
     override fun initViewAndData() {
-        filePath = arguments.getString("filePath", "")
-        val videoItem = arguments.getSerializable("videoItem") as VideoItem?
+        videoItem = arguments.getSerializable("videoItem") as VideoItem?
         videoItem?.apply {
             f<TextView>(R.id.tvTitleContent).text = name
             f<TextView>(R.id.tvResolutionContent).text = "${width}x${height}"
@@ -77,7 +76,7 @@ class VideoInfoPopupComp : BaseDialogFragment() {
     private fun loadMoreInfo() {
         executeByCached {
             if (session == null) {
-                session = FFmpegCompressor.getVideoInfo(filePath)
+                session = FFmpegCompressor.getVideoInfo(videoItem?.filePath)
             }
             session?.mediaInformation?.streams?.forEach { streamInfo ->
                 if ("video" == streamInfo.allProperties.optString("codec_type")) {
