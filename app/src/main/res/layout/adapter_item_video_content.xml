@@ -86,6 +86,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:gravity="center"
+            android:padding="10dp"
             android:text="@string/if_more"
             android:textColor="@color/black60"
             android:textSize="14sp" />

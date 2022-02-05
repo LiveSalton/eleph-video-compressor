@@ -15,5 +15,6 @@ class ContentStubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
     var tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
     var tvProgress: TextView = itemView.findViewById(R.id.tvProgress)
     var tvSubTitle: TextView = itemView.findViewById(R.id.tvSubTitle)
+    var tvMore: TextView = itemView.findViewById(R.id.tvMore)
     var ivThumbnail: ImageView = itemView.findViewById(R.id.ivThumbnail)
 }

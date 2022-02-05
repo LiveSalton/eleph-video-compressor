@@ -146,4 +146,26 @@ object Utils {
         val lastSep = filePath.lastIndexOf(File.separator)
         return if (lastSep == -1) filePath else filePath.substring(lastSep + 1)
     }
+
+    /**
+     * 重命名文件和文件夹
+     *
+     * @param file        File对象
+     * @param newFileName 新的文件名
+     * @return 执行结果
+     */
+    fun renameFile(file: File, newFileName: String): Boolean {
+        var newFile = if (file.isDirectory) {
+            File(file.parentFile, newFileName)
+        } else {
+            val temp = (newFileName
+                + file.name.substring(
+                file.name.lastIndexOf('.')))
+            File(file.parentFile, temp)
+        }
+        if (file.renameTo(newFile)) {
+            return true
+        }
+        return false
+    }
 }

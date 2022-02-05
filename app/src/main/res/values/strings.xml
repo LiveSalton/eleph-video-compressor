@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="input_a_name">please input a name</string>
+    <string name="ok">ok</string>
+    <string name="video_delete_success">video delete success</string>
+    <string name="video_delete_failed">video delete failed</string>
+    <string name="delete_tips">are you sure to delete?</string>
+</resources>

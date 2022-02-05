@@ -51,15 +51,17 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
             .thumbnail(0.3f)
             .placeholder(R.drawable.ic_placeholder)
             .into(holder.ivThumbnail)
-        holder.itemView.setOnClickListener {
+        holder.tvMore.setOnClickListener {
             VideoMenuPopupComp().apply {
                 arguments = Bundle().apply {
                     putString("filePath", item.filePath)
                     putSerializable("videoItem", item)
                 }
                 show((context as Activity).fragmentManager, "VideoMenuPopupComp")
+                attachAdapter(this@RecyclerContentAdapter)
             }
-
+        }
+        holder.itemView.setOnClickListener {
 //            item.squeezeState = 1
 //            var height = (item.height / 2) - (item.height / 2) % 2
 //            var width = (item.width / 2) - (item.width / 2) % 2
@@ -81,6 +83,16 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
 //                }
 //            }
         }
+    }
+
+    fun notifyItemChange(videoItem: VideoItem) {
+        val index = dataList.indexOf(videoItem)
+        notifyItemChanged(index)
+    }
+
+    fun notifyItemDelete(videoItem: VideoItem) {
+        val index = dataList.indexOf(videoItem)
+        notifyItemRemoved(index)
     }
 
     override fun getItemCount(): Int = dataList.size
