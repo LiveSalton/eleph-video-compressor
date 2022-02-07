@@ -10,9 +10,9 @@ import java.io.Serializable;
  * Author:wujinsheng1
  * Description:
  */
-@Table(name = "video", onCreated = "CREATE UNIQUE INDEX index_name ON video(id,filePath)")
+@Table(name = "video")
 public class VideoItem implements Serializable {
-  @Column(name = "id", isId = true) private int id;
+  @Column(name = "id", isId = true) public int id;
   @Column(name = "filePath")  public String filePath = "";
   @Column(name = "dirName")  public String dirName = "";
   @Column(name = "name")  public String name = "";

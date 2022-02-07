@@ -163,9 +163,14 @@ object Utils {
                 file.name.lastIndexOf('.')))
             File(file.parentFile, temp)
         }
+        println("file:${file.absolutePath},newFile:${newFile.absolutePath}")
         if (file.renameTo(newFile)) {
             return true
         }
         return false
+    }
+
+    fun isFileExist(filePath: String): Boolean {
+        return File(filePath).exists()
     }
 }

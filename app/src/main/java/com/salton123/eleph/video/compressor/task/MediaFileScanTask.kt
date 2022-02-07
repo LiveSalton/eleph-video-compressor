@@ -89,8 +89,12 @@ object MediaFileScanTask {
     private fun addVideoToMap(videoItem: VideoItem) {
         val title = videoItem.dateTime
         videoMap[title]?.apply {
-            add(videoItem)
-            onDataListChange?.invoke(title, this)
+            if (Utils.isFileExist(videoItem.filePath)) {
+                add(videoItem)
+                onDataListChange?.invoke(title, this)
+            } else {
+                VideoDao.deleteVideo(videoItem)
+            }
         } ?: kotlin.run {
             val list: CopyOnWriteArrayList<VideoItem> = CopyOnWriteArrayList()
             list.add(videoItem)
