@@ -12,7 +12,10 @@ import com.salton123.base.BaseDialogFragment
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.compressor.persistence.VideoDao
+import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.ui.dialog.RenameDialog
+import com.salton123.eleph.video.kt.toast
 import com.salton123.manager.ActivityLifeCycleManager
 import com.salton123.util.ScreenUtils
 import java.io.File
@@ -64,26 +67,30 @@ class VideoMenuPopupComp : BaseDialogFragment() {
             dismissAllowingStateLoss()
         }
         f<LinearLayout>(R.id.llDelete).setOnClickListener {
-            AlertDialog.Builder(activity)
-                .setMessage(getString(R.string.delete_tips))
-                .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
-                    dialog.dismiss()
-                }
-                .setPositiveButton(getString(R.string.ok)) { dialog, which ->
-                    try {
-                        val ret = File(videoItem.filePath).delete()
-                        if (ret) {
-                            attachAdapter.notifyItemDelete(videoItem)
-                            Toast.makeText(activity, getString(R.string.video_delete_success), Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(activity, getString(R.string.video_delete_failed), Toast.LENGTH_SHORT).show()
-                        }
-                    } catch (ex: Exception) {
-                        ex.printStackTrace()
+            ActivityLifeCycleManager.INSTANCE.currentResumedActivity.let { aty ->
+                AlertDialog.Builder(aty)
+                    .setMessage(getString(R.string.delete_tips))
+                    .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                        dialog.dismiss()
                     }
-                    dialog.dismiss()
-                }
-                .create().show()
+                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                        try {
+                            val ret = File(videoItem.filePath).delete()
+                            VideoDao.deleteVideo(videoItem)
+                            MediaFileScanTask.removeVideoItem(videoItem)
+                            if (ret) {
+                                attachAdapter.notifyItemDelete(videoItem)
+                                toast(getString(R.string.video_delete_success))
+                            } else {
+                                toast(getString(R.string.video_delete_failed))
+                            }
+                        } catch (ex: Exception) {
+                            ex.printStackTrace()
+                        }
+                        dialog.dismiss()
+                    }
+                    .create().show()
+            }
             dismissAllowingStateLoss()
         }
     }

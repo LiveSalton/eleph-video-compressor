@@ -100,4 +100,14 @@ object MediaFileScanTask {
             onDataListChange?.invoke(title, list)
         }
     }
+
+    fun removeVideoItem(videoItem: VideoItem) {
+        val title = videoItem.dateTime
+        videoMap[title]?.apply {
+            remove(videoItem)
+            if (videoMap[title]?.isEmpty() == true) {
+                videoMap.remove(title)
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@ import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Time:2022/1/27 14:59
@@ -29,6 +30,19 @@ public class VideoItem implements Serializable {
   @Column(name = "squeezeProgress")  public int squeezeProgress = 0;
   @Column(name = "squeezeState") public int squeezeState = 0;   //0 default 1 ing 2 ed
   public VideoItem() {
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    VideoItem videoItem = (VideoItem) o;
+    return filePath.equals(videoItem.filePath);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(filePath);
   }
 
   @Override
