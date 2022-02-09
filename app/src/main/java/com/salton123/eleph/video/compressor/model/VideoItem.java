@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 @Table(name = "video", onCreated = "CREATE UNIQUE INDEX index_name ON video(id,filePath)")
 public class VideoItem implements Serializable {
-  @Column(name = "id", isId = true) private int id;
+  @Column(name = "id", isId = true) public int id;
   @Column(name = "filePath")  public String filePath = "";
   @Column(name = "dirName")  public String dirName = "";
   @Column(name = "name")  public String name = "";

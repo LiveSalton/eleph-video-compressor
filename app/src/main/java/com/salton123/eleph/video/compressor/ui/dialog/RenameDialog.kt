@@ -6,12 +6,12 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.utils.Utils
+import com.salton123.eleph.video.kt.toast
 import java.io.File
 
 /**
@@ -22,7 +22,6 @@ import java.io.File
 class RenameDialog(context: Context, videoItem: VideoItem, attachAdapter: RecyclerContentAdapter)
     : AlertDialog(context, R.style.GeneralDialog) {
     init {
-//        setContentView(R.layout.dialog_view_rename)
         val view = View.inflate(context, R.layout.dialog_view_rename, null)
         setView(view)
         val etInput = view.findViewById<EditText>(R.id.etInput)
@@ -35,13 +34,21 @@ class RenameDialog(context: Context, videoItem: VideoItem, attachAdapter: Recycl
         view.findViewById<TextView>(R.id.tvCommit).setOnClickListener {
             val inputText = etInput.text.toString().trim()
             if (!TextUtils.isEmpty(inputText)) {
-                videoItem.name = inputText
-                Utils.renameFile(File(videoItem.filePath), inputText)
-                VideoDao.updateVideo(videoItem)
-                attachAdapter.notifyItemChange(videoItem)
+//                Utils.renameFile(File(videoItem.filePath), inputText)
+                val file = File(videoItem.filePath)
+                val tempFileName = (inputText + file.name.substring(file.name.lastIndexOf('.')))
+                val newFile = File(file.parentFile, tempFileName)
+                if (file.renameTo(newFile)) {
+                    videoItem.name = tempFileName
+                    videoItem.filePath = newFile.absolutePath
+                    VideoDao.updateVideo(videoItem)
+                    attachAdapter.notifyItemChange(videoItem)
+                } else {
+                    toast(context.getString(R.string.rename_failed))
+                }
                 dismiss()
             } else {
-                Toast.makeText(context, context.getString(R.string.input_a_name), Toast.LENGTH_LONG).show()
+                toast(context.getString(R.string.input_a_name))
             }
         }
     }

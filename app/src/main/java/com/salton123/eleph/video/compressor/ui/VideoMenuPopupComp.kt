@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.WindowManager
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.salton123.base.BaseDialogFragment
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
@@ -70,19 +69,20 @@ class VideoMenuPopupComp : BaseDialogFragment() {
             ActivityLifeCycleManager.INSTANCE.currentResumedActivity.let { aty ->
                 AlertDialog.Builder(aty)
                     .setMessage(getString(R.string.delete_tips))
-                    .setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                    .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                         dialog.dismiss()
                     }
-                    .setPositiveButton(getString(R.string.ok)) { dialog, which ->
+                    .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                         try {
-                            val ret = File(videoItem.filePath).delete()
+                            val file = File(videoItem.filePath)
+                            val ret = file.delete()
                             VideoDao.deleteVideo(videoItem)
                             MediaFileScanTask.removeVideoItem(videoItem)
-                            if (ret) {
+                            if (ret || !file.exists()) {
+                                R.string.video_delete_success.toast()
                                 attachAdapter.notifyItemDelete(videoItem)
-                                toast(getString(R.string.video_delete_success))
                             } else {
-                                toast(getString(R.string.video_delete_failed))
+                                R.string.video_delete_failed.toast()
                             }
                         } catch (ex: Exception) {
                             ex.printStackTrace()

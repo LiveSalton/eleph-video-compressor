@@ -114,6 +114,9 @@ object MediaFileScanTask {
             remove(videoItem)
             if (videoMap[title]?.isEmpty() == true) {
                 videoMap.remove(title)
+                log("remove title:$title")
+                val types = videoMap.keys.sortedDescending().toMutableList()
+                onTypeListChange?.invoke(types)
             }
         }
     }
