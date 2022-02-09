@@ -33,7 +33,7 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
 
     override fun remove(item: VideoItem) {
         sql.writableDatabase.also {
-            it.delete(table, "id=?", arrayOf("${item.id}"))
+            it.delete(table, "filePath=?", arrayOf("${item.filePath}"))
             it.close()
         }
     }

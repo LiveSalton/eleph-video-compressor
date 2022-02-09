@@ -58,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"
-                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center_vertical|start"
                 android:lines="1"
                 android:textColor="@color/black90"
