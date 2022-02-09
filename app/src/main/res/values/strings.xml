@@ -5,4 +5,6 @@
     <string name="video_delete_success">video delete success</string>
     <string name="video_delete_failed">video delete failed</string>
     <string name="delete_tips">are you sure to delete?</string>
+    <string name="nodata">no data found</string>
+    <string name="rename_failed">rename failed</string>
 </resources>

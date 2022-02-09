@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Process
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +30,7 @@ class HomeActivity : DelegateActivity() {
     override fun getLayout(): Int = R.layout.activity_home
     private lateinit var mImmersionFeature: ImmersionFeature
     private lateinit var recyclerView: RecyclerView
+    private lateinit var llEmptyView: LinearLayout
     private lateinit var tvMore: TextView
     private lateinit var mAdapter: VideoRecyclerAdapter
     override fun initVariable(savedInstanceState: Bundle?) {
@@ -54,14 +57,22 @@ class HomeActivity : DelegateActivity() {
 
     private fun initListView() {
         recyclerView = findViewById(R.id.recyclerView)
+        llEmptyView = findViewById(R.id.llEmptyView)
         tvMore = findViewById(R.id.tvMore)
         mAdapter = VideoRecyclerAdapter()
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         MediaFileScanTask.onTypeListChange = { list ->
             runOnUi {
-                mAdapter.setData(list)
-                recyclerView.scrollToPosition(0)
+                if (list.isEmpty()) {
+                    llEmptyView.visibility = View.VISIBLE
+                    recyclerView.visibility = View.GONE
+                } else {
+                    mAdapter.setData(list)
+                    recyclerView.scrollToPosition(0)
+                    llEmptyView.visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                }
             }
         }
         tvMore.setOnClickListener {

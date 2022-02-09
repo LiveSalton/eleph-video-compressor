@@ -5,6 +5,7 @@ configProp.load(new FileInputStream(file("$rootDir/config.properties")))
 
 
 android {
+    ndkVersion "21.4.7075529"
     compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
     buildToolsVersion "${rootProject.ext.android.buildToolsVersion}"
     defaultConfig {

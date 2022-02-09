@@ -39,9 +39,16 @@ object MediaFileScanTask {
             }
         }
         videoMap.clear()
-        VideoDao.findAll()?.forEach {
-            addVideoToMap(it)
+        val cacheAllData = VideoDao.findAll()
+        if (cacheAllData?.isEmpty() == true) {
+            val emptyList: MutableList<Long> = mutableListOf()
+            onTypeListChange?.invoke(emptyList)
+        } else {
+            cacheAllData?.forEach {
+                addVideoToMap(it)
+            }
         }
+
     }
 
     /**
@@ -102,6 +109,19 @@ object MediaFileScanTask {
             val types = videoMap.keys.sortedDescending().toMutableList()
             onTypeListChange?.invoke(types)
             onDataListChange?.invoke(title, list)
+        }
+    }
+
+    fun removeVideoItem(videoItem: VideoItem) {
+        val title = videoItem.dateTime
+        videoMap[title]?.apply {
+            remove(videoItem)
+            if (videoMap[title]?.isEmpty() == true) {
+                videoMap.remove(title)
+                log("remove title:$title")
+                val types = videoMap.keys.sortedDescending().toMutableList()
+                onTypeListChange?.invoke(types)
+            }
         }
     }
 }
