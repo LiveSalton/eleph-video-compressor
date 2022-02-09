@@ -39,9 +39,16 @@ object MediaFileScanTask {
             }
         }
         videoMap.clear()
-        VideoDao.findAll()?.forEach {
-            addVideoToMap(it)
+        val cacheAllData = VideoDao.findAll()
+        if (cacheAllData?.isEmpty() == true) {
+            val emptyList: MutableList<Long> = mutableListOf()
+            onTypeListChange?.invoke(emptyList)
+        } else {
+            cacheAllData?.forEach {
+                addVideoToMap(it)
+            }
         }
+
     }
 
     /**
