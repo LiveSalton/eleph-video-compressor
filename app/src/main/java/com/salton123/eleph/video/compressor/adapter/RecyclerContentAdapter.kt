@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.holder.ContentStubViewHolder
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.compressor.ui.SqueezeOptionPopupComp
 import com.salton123.eleph.video.compressor.ui.VideoMenuPopupComp
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.properties.Delegates
@@ -62,6 +63,13 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
             }
         }
         holder.itemView.setOnClickListener {
+            SqueezeOptionPopupComp().apply {
+                arguments = Bundle().apply {
+                    putSerializable("videoItem", item)
+                }
+                show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
+                attachAdapter(this@RecyclerContentAdapter)
+            }
 //            item.squeezeState = 1
 //            var height = (item.height / 2) - (item.height / 2) % 2
 //            var width = (item.width / 2) - (item.width / 2) % 2

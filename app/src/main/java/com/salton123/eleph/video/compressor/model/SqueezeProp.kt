@@ -25,7 +25,6 @@ data class SqueezeProp(
     fun getSavePath(filePath: String): String {
         val file = File(filePath)
         val fileName = file.name.replace(".${file.extension}", "_${vcodec}_${acodec}_${scale}.${file.extension}")
-//        return x.app().externalCacheDir.absolutePath + File.separator + ".cache" + File.separator + fileName
         return x.app().externalCacheDir.absolutePath + File.separator + fileName
     }
 }

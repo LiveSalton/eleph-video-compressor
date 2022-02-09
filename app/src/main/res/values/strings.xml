@@ -7,4 +7,5 @@
     <string name="delete_tips">are you sure to delete?</string>
     <string name="nodata">no data found</string>
     <string name="rename_failed">rename failed</string>
+    <string name="encode">编码</string>
 </resources>

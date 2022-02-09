@@ -1,7 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+
+            android:text="@string/encode"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbH264"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="h264" />
+
+            <RadioButton
+                android:id="@+id/rbH265"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="h265" />
+
+            <RadioButton
+                android:id="@+id/rbMpeg4"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="mpeg" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="尺寸"
+            android:textSize="18sp" />
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbOrigin"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="1280*1920" />
+
+            <RadioButton
+                android:id="@+id/rbThreeQuarters"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="960*1440" />
+
+            <RadioButton
+                android:id="@+id/rbHalf"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_channel_gift_indicator_bg"
+                android:button="@null"
+                android:checked="false"
+                android:gravity="center"
+                android:text="640*860" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="5dp"
+            android:layout_marginEnd="20dp"
+            android:text="Cancel"
+            android:textColor="@color/color_4caf50_material"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="5dp"
+            android:text="Start"
+            android:textColor="@color/color_4caf50_material"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
 
 </LinearLayout>
