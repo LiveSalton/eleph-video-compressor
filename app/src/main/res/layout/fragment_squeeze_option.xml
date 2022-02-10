@@ -22,6 +22,7 @@
             android:textSize="18sp" />
 
         <RadioGroup
+            android:id="@+id/rgEncoder"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -84,6 +85,7 @@
 
 
         <RadioGroup
+            android:id="@+id/rgDensity"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -145,8 +147,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:padding="5dp"
             android:layout_marginEnd="20dp"
+            android:padding="5dp"
             android:text="Cancel"
             android:textColor="@color/color_4caf50_material"
             android:textSize="14sp"

@@ -5,10 +5,13 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.WindowManager
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import com.salton123.base.BaseDialogFragment
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
+import com.salton123.eleph.video.compressor.model.SqueezeProp
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.util.ScreenUtils
 
@@ -26,11 +29,61 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         setStyle(STYLE_NORMAL, R.style.GeneralDialog)
     }
 
+    private lateinit var rgEncoder: RadioGroup
+    private lateinit var rgDensity: RadioGroup
+    private lateinit var rbOrigin: RadioButton
+    private lateinit var rbThreeQuarters: RadioButton
+    private lateinit var rbHalf: RadioButton
+    var encoder = "h264"
+    var density = ""
     override fun initViewAndData() {
         val videoItem = arguments.getSerializable("videoItem") as VideoItem?
-//        videoItem?.apply {
-//            f<TextView>(R.id.tvTitleContent).text = name
-//        }
+        val position = arguments.getInt("position")
+        rgEncoder = f(R.id.rgEncoder)
+        rgEncoder.setOnCheckedChangeListener { _, checkedId ->
+            encoder = when (checkedId) {
+                R.id.rbH265 -> {
+                    "h265"
+                }
+                R.id.rbMpeg4 -> {
+                    "mpeg4"
+                }
+                else -> {
+                    "h264"
+                }
+            }
+        }
+        rgDensity = f(R.id.rgDensity)
+        rgDensity.setOnCheckedChangeListener { _, checkedId ->
+            density = when (checkedId) {
+                R.id.rbHalf -> {
+                    videoItem?.let { halfDensity(it).second } ?: ""
+                }
+                R.id.rbThreeQuarters -> {
+                    videoItem?.let { threeQuarterDensity(it).second } ?: ""
+                }
+                else -> {
+                    videoItem?.let { originDensity(it).second } ?: ""
+                }
+            }
+        }
+        rbOrigin = f(R.id.rbOrigin)
+        rbThreeQuarters = f(R.id.rbThreeQuarters)
+        rbHalf = f(R.id.rbHalf)
+        rbOrigin.text = videoItem?.let { originDensity(it).first }
+        rbThreeQuarters.text = videoItem?.let { threeQuarterDensity(it).first }
+        rbHalf.text = videoItem?.let { halfDensity(it).first }
+        videoItem?.apply {
+            f<TextView>(R.id.tvCancel).setOnClickListener {
+                dismiss()
+            }
+            f<TextView>(R.id.tvSubmit).setOnClickListener {
+                rgEncoder.checkedRadioButtonId
+                val prop = SqueezeProp(videoItem.filePath, encoder, "aac", density)
+                attachAdapter?.startSqueeze(videoItem, position, prop)
+                dismissAllowingStateLoss()
+            }
+        }
     }
 
     private lateinit var attachAdapter: RecyclerContentAdapter
@@ -48,5 +101,21 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         window.attributes = params
         window.setWindowAnimations(R.style.slide_popup_ani)
         window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+    }
+
+    private fun originDensity(videoItem: VideoItem): Pair<String, String> {
+        return Pair("${videoItem.width}x${videoItem.height}", "${videoItem.width}:${videoItem.height}")
+    }
+
+    private fun threeQuarterDensity(videoItem: VideoItem): Pair<String, String> {
+        var height = (videoItem.height * 4 / 3) - (videoItem.height * 4 / 3) % 2
+        var width = (videoItem.width * 4 / 3) - (videoItem.width * 4 / 3) % 2
+        return Pair("${width}x${height}", "${width}:${height}")
+    }
+
+    private fun halfDensity(videoItem: VideoItem): Pair<String, String> {
+        var height = (videoItem.height / 2) - (videoItem.height / 2) % 2
+        var width = (videoItem.width / 2) - (videoItem.width / 2) % 2
+        return Pair("${width}x${height}", "${width}:${height}")
     }
 }

@@ -15,7 +15,6 @@ import java.util.Objects;
 public class VideoItem implements Serializable {
   @Column(name = "id", isId = true) public int id;
   @Column(name = "filePath")  public String filePath = "";
-  @Column(name = "dirName")  public String dirName = "";
   @Column(name = "name")  public String name = "";
   @Column(name = "mimeType")  public String mimeType = "";
   @Column(name = "size")  public long size = 0;
@@ -23,12 +22,10 @@ public class VideoItem implements Serializable {
   @Column(name = "height")  public int height = 0;
   @Column(name = "duration")  public long duration = 0;
   @Column(name = "createdAt")  public long createdAt = 0;
-  @Column(name = "updatedAt")  public long updatedAt = 0;
-  @Column(name = "playedPosition")  public long playedPosition = 0;
-  @Column(name = "letter")  public String letter = "";
   @Column(name = "dateTime")  public long dateTime = 0;
   @Column(name = "squeezeProgress")  public int squeezeProgress = 0;
-  @Column(name = "squeezeState") public int squeezeState = 0;   //0 default 1 ing 2 ed
+  @Column(name = "squeezeState") public int squeezeState = 0;   //0 default 1 ing 2 success 3 failed
+  @Column(name = "squeezeSavePath") public String squeezeSavePath = "";   //0 default 1 ing 2 success 3 failed
   public VideoItem() {
   }
 

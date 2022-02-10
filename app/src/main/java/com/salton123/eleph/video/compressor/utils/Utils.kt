@@ -82,15 +82,12 @@ object Utils {
         return VideoItem().apply {
             this.filePath = filePath
             this.name = if (TextUtils.isEmpty(name)) getFileName(filePath) else name!!
-            this.dirName = dirName(file)
             this.mimeType = if (TextUtils.isEmpty(mimeType)) "video/mp4" else mimeType
             this.size = file.length()
             this.duration = duration
             this.createdAt = file.lastModified()
-            this.updatedAt = System.currentTimeMillis()
             this.width = width
             this.height = height
-            this.letter = dirName(file).first().toString()
             this.dateTime = getDateTime(file.lastModified())
         }
     }

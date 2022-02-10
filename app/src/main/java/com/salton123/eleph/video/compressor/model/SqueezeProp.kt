@@ -16,13 +16,13 @@ data class SqueezeProp(
     var scale: String = ""
 ) {
     fun toFFmpegProp(): String {
-        val savePath = getSavePath(filePath)
+        val savePath = getSavePath()
         val prop = "-i $filePath -vcodec $vcodec -acodec $acodec -vf scale=$scale -y $savePath"
         log("savePath:$savePath,prop:$prop")
         return prop
     }
 
-    fun getSavePath(filePath: String): String {
+    fun getSavePath(): String {
         val file = File(filePath)
         val fileName = file.name.replace(".${file.extension}", "_${vcodec}_${acodec}_${scale}.${file.extension}")
         return x.app().externalCacheDir.absolutePath + File.separator + fileName

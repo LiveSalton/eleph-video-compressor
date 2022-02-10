@@ -38,7 +38,7 @@ object VideoDao {
     }
 
     fun updateVideo(item: VideoItem) {
-        dbManager.update(item)
+        dbManager.update(VideoItem::class.java, WhereBuilder.b("filePath", "=", item.filePath))
     }
 
     fun findAll(): MutableList<VideoItem>? {
