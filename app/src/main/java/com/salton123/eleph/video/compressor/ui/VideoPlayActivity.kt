@@ -28,6 +28,7 @@ class VideoPlayActivity : DelegateActivity() {
     }
 
     private var videoItem: VideoItem? = null
+    private var isPlaySqueeze = false
     override fun initViewAndData() {
         videoPlayer = f(R.id.videoPlayer)
         tvBack = f(R.id.tvBack)
@@ -36,11 +37,16 @@ class VideoPlayActivity : DelegateActivity() {
             finish()
         }
 
-
         videoItem = intent?.getSerializableExtra("videoItem") as VideoItem?
+        isPlaySqueeze = intent?.getBooleanExtra("isPlaySqueeze", false) ?: false
         videoItem?.apply {
             tvTitle.text = name
-            videoPlayer.updatePlayUrl(VideoBean(0, Uri.parse(filePath)))
+            if (isPlaySqueeze) {
+                videoPlayer.updatePlayUrl(VideoBean(0, Uri.parse(squeezeSavePath)))
+            } else {
+                videoPlayer.updatePlayUrl(VideoBean(0, Uri.parse(filePath)))
+            }
+
             videoPlayer.startPlay()
         }
     }

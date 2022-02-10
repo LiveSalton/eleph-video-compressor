@@ -13,39 +13,57 @@ import java.util.Objects;
  */
 @Table(name = "video")
 public class VideoItem implements Serializable {
-  @Column(name = "id", isId = true) public int id;
-  @Column(name = "filePath")  public String filePath = "";
-  @Column(name = "name")  public String name = "";
-  @Column(name = "mimeType")  public String mimeType = "";
-  @Column(name = "size")  public long size = 0;
-  @Column(name = "width")  public int width = 0;
-  @Column(name = "height")  public int height = 0;
-  @Column(name = "duration")  public long duration = 0;
-  @Column(name = "createdAt")  public long createdAt = 0;
-  @Column(name = "dateTime")  public long dateTime = 0;
-  @Column(name = "squeezeProgress")  public int squeezeProgress = 0;
-  @Column(name = "squeezeState") public int squeezeState = 0;   //0 default 1 ing 2 success 3 failed
-  @Column(name = "squeezeSavePath") public String squeezeSavePath = "";   //0 default 1 ing 2 success 3 failed
-  public VideoItem() {
-  }
+    @Column(name = "id", isId = true)
+    public int id;
+    @Column(name = "filePath")
+    public String filePath = "";
+    @Column(name = "name")
+    public String name = "";
+    @Column(name = "mimeType")
+    public String mimeType = "";
+    @Column(name = "size")
+    public long size = 0;
+    @Column(name = "width")
+    public int width = 0;
+    @Column(name = "height")
+    public int height = 0;
+    @Column(name = "duration")
+    public long duration = 0;
+    @Column(name = "createdAt")
+    public long createdAt = 0;
+    @Column(name = "dateTime")
+    public long dateTime = 0;
+    @Column(name = "squeezeProgress")
+    public int squeezeProgress = 0;
+    @Column(name = "squeezeState")
+    public int squeezeState = 0;   //0 default 1 ing 2 success 3 failed
+    @Column(name = "squeezeSavePath")
+    public String squeezeSavePath = "";   //0 default 1 ing 2 success 3 failed
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    VideoItem videoItem = (VideoItem) o;
-    return filePath.equals(videoItem.filePath);
-  }
+    public VideoItem() {
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(filePath);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VideoItem videoItem = (VideoItem) o;
+        return filePath.equals(videoItem.filePath);
+    }
 
-  @Override
-  public String toString() {
-    return "VideoItem{" +
-        "name='" + name + '\'' +
-        '}';
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(filePath);
+    }
+
+    @Override
+    public String toString() {
+        return "VideoItem{" +
+            "name='" + name + '\'' +
+            '}';
+    }
+
+    public boolean isSqueezeSuccess() {
+        return squeezeState == 2;
+    }
 }

@@ -1,6 +1,7 @@
 package com.salton123.eleph.video.compressor.adapter
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.format.Formatter
 import android.view.View
@@ -15,6 +16,7 @@ import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.ui.SqueezeOptionPopupComp
 import com.salton123.eleph.video.compressor.ui.VideoMenuPopupComp
+import com.salton123.eleph.video.compressor.ui.VideoPlayActivity
 import com.salton123.eleph.video.kt.runOnUi
 import java.io.File
 import java.util.concurrent.CopyOnWriteArrayList
@@ -75,13 +77,20 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
             }
         }
         holder.itemView.setOnClickListener {
-            SqueezeOptionPopupComp().apply {
-                arguments = Bundle().apply {
-                    putSerializable("videoItem", item)
-                    putInt("position", position)
+            if (item.isSqueezeSuccess && File(item.squeezeSavePath).exists()) {
+                context.startActivity(Intent(context, VideoPlayActivity::class.java).apply {
+                    putExtra("videoItem", item)
+                    putExtra("isPlaySqueeze", true)
+                })
+            } else {
+                SqueezeOptionPopupComp().apply {
+                    arguments = Bundle().apply {
+                        putSerializable("videoItem", item)
+                        putInt("position", position)
+                    }
+                    show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
+                    attachAdapter(this@RecyclerContentAdapter)
                 }
-                show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
-                attachAdapter(this@RecyclerContentAdapter)
             }
         }
     }
@@ -98,7 +107,8 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
                 } else if (it < 0) {
                     item.squeezeState = 3
                 }
-                notifyItemChanged(position)
+                notifyDataSetChanged()
+//                notifyItemChanged(position)
             }
         }
     }
