@@ -1,6 +1,7 @@
 package com.salton123.eleph.video.compressor.ui
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -45,7 +46,10 @@ class VideoMenuPopupComp : BaseDialogFragment() {
             dismissAllowingStateLoss()
         }
         f<LinearLayout>(R.id.llPlayNow).setOnClickListener {
-
+            startActivity(Intent(activity(), VideoPlayActivity::class.java).apply {
+                putExtra("videoItem", videoItem)
+            })
+            dismissAllowingStateLoss()
         }
         f<LinearLayout>(R.id.llFileInfo).setOnClickListener {
             VideoInfoPopupComp().apply {
