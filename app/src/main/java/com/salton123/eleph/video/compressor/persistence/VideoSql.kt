@@ -10,14 +10,18 @@ import android.util.Log
  * Author:
  * Description:
  */
+const val TABLE_NAME = "VideoInfo"
+
 class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", null, 1) {
     private val tag = "VideoSql"
+
+    //    CREATE TABLE "video_info" ( "filePath" TEXT PRIMARY KEY, "compressProgress" INTEGER ,"createdAt" INTEGER ,"dirName" TEXT ,"duration" INTEGER  ,"height" INTEGER ,"letter" TEXT ,"mimeType" TEXT ,"name" TEXT ,"playedPosition" INTEGER ,"size" INTEGER ,"updatedAt" INTEGER ,"width" INTEGER  );
     override fun onCreate(db: SQLiteDatabase?) {
+//        db?.enableWriteAheadLogging()
         db?.apply {
-            enableWriteAheadLogging()
-            execSQL("create table VideoInfo(" +
-                "id integer primary key autoincrement," +
-                "filePath text," +
+//            enableWriteAheadLogging()
+            execSQL("create table ${TABLE_NAME}(" +
+                "filePath TEXT PRIMARY KEY," +
                 "name varchar(128)," +
                 "mimeType varchar(20)," +
                 "size INTEGER," +
@@ -26,7 +30,8 @@ class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", nu
                 "createdAt INTEGER," +
                 "dateTime INTEGER," +
                 "squeezeProgress INTEGER," +
-                "squeezeState INTEGER" +
+                "squeezeState INTEGER," +
+                "squeezeSavePath TEXT" +
                 ")")
         }
     }
@@ -45,5 +50,9 @@ class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", nu
                 }
             }
         }
+//        db.execSQL("drop table if exists " + TB_NAME);
+//        onCreate(db);
     }
+
+
 }
