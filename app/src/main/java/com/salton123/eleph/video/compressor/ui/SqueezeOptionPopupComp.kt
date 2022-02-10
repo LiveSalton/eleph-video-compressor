@@ -39,11 +39,12 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
     override fun initViewAndData() {
         val videoItem = arguments.getSerializable("videoItem") as VideoItem?
         val position = arguments.getInt("position")
+        density = videoItem?.let { originDensity(it).second } ?: ""
         rgEncoder = f(R.id.rgEncoder)
         rgEncoder.setOnCheckedChangeListener { _, checkedId ->
             encoder = when (checkedId) {
                 R.id.rbH265 -> {
-                    "h265"
+                    "hevc"
                 }
                 R.id.rbMpeg4 -> {
                     "mpeg4"

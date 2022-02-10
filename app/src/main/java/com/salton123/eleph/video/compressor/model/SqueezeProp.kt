@@ -17,7 +17,8 @@ data class SqueezeProp(
 ) {
     fun toFFmpegProp(): String {
         val savePath = getSavePath()
-        val prop = "-i $filePath -vcodec $vcodec -acodec $acodec -vf scale=$scale -y $savePath"
+        val processors = Runtime.getRuntime().availableProcessors() / 2
+        val prop = "-i $filePath -vcodec $vcodec -acodec $acodec -vf scale=$scale -y -threads $processors $savePath"
         log("savePath:$savePath,prop:$prop")
         return prop
     }

@@ -94,7 +94,7 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
                 if (it == 100) {
                     item.squeezeState = 2
                     item.squeezeSavePath = prop.getSavePath()
-                    VideoDao.updateVideo(item)
+//                    VideoDao.updateVideo(item)
                 } else if (it < 0) {
                     item.squeezeState = 3
                 }

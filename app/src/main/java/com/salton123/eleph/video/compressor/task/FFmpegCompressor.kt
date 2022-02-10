@@ -74,4 +74,14 @@ object FFmpegCompressor {
     fun getVideoInfo(filePath: String?): MediaInformationSession {
         return FFprobeKit.getMediaInformation(filePath)
     }
+
+    fun help() {
+        FFmpegKit.executeAsync("-encoders", {
+            Log.i(TAG, "help:$it")
+        }, {
+//            Log.i(TAG, "help:$it")
+        }, {
+//            Log.i(TAG, "help:$it")
+        })
+    }
 }

@@ -14,6 +14,7 @@ import com.salton123.base.DelegateActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
+import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.kt.runOnUi
 
@@ -53,6 +54,7 @@ class HomeActivity : DelegateActivity() {
 
     override fun initViewAndData() {
         initListView()
+        FFmpegCompressor.help()
     }
 
     private fun initListView() {
