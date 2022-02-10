@@ -8,7 +8,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.salton123.corelite.R;
+import com.salton123.eleph.R;
 
 /**
  * User: newSalton@outlook.com

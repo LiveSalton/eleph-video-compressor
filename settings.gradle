@@ -1,2 +1,3 @@
-include ':app', ':corelite'
+include ':app'
+//, ':corelite'
 //, ':video'

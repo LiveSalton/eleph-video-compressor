@@ -8,4 +8,8 @@
     <string name="nodata">no data found</string>
     <string name="rename_failed">rename failed</string>
     <string name="encode">编码</string>
+	 <string name="app_name">视频压缩器</string>
+    <string name="search">搜索</string>
+    <string name="cancel">取消</string>
+    <string name="information">Information</string>
 </resources>

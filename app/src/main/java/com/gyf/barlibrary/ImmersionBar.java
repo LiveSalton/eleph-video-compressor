@@ -19,7 +19,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.salton123.corelite.R;
+
+import com.salton123.eleph.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

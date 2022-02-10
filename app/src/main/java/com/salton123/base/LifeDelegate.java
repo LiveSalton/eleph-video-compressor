@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.salton123.corelite.R;
+import com.salton123.eleph.R;
 
 import androidx.annotation.Nullable;
 

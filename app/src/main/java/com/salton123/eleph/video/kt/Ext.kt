@@ -2,7 +2,7 @@ package com.salton123.eleph.video.kt
 
 import android.util.Log
 import android.widget.Toast
-import com.salton123.corelite.BuildConfig
+import com.salton123.eleph.BuildConfig
 import org.xutils.x
 
 /**

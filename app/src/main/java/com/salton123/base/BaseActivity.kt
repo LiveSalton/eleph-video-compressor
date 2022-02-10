@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.salton123.base.feature.ImmersionFeature
-import com.salton123.corelite.R
+import com.salton123.eleph.R
 
 /**
  * Time:2022/2/2 5:29 下午
