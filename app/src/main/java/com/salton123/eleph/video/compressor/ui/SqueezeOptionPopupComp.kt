@@ -39,7 +39,7 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
     override fun initViewAndData() {
         val videoItem = arguments.getSerializable("videoItem") as VideoItem?
         val position = arguments.getInt("position")
-        density = videoItem?.let { originDensity(it).second } ?: ""
+        density = videoItem?.let { originDensity(it) } ?: ""
         rgEncoder = f(R.id.rgEncoder)
         rgEncoder.setOnCheckedChangeListener { _, checkedId ->
             encoder = when (checkedId) {
@@ -58,22 +58,22 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         rgDensity.setOnCheckedChangeListener { _, checkedId ->
             density = when (checkedId) {
                 R.id.rbHalf -> {
-                    videoItem?.let { halfDensity(it).second } ?: ""
+                    videoItem?.let { halfDensity(it) } ?: ""
                 }
                 R.id.rbThreeQuarters -> {
-                    videoItem?.let { threeQuarterDensity(it).second } ?: ""
+                    videoItem?.let { threeQuarterDensity(it) } ?: ""
                 }
                 else -> {
-                    videoItem?.let { originDensity(it).second } ?: ""
+                    videoItem?.let { originDensity(it) } ?: ""
                 }
             }
         }
         rbOrigin = f(R.id.rbOrigin)
         rbThreeQuarters = f(R.id.rbThreeQuarters)
         rbHalf = f(R.id.rbHalf)
-        rbOrigin.text = videoItem?.let { originDensity(it).first }
-        rbThreeQuarters.text = videoItem?.let { threeQuarterDensity(it).first }
-        rbHalf.text = videoItem?.let { halfDensity(it).first }
+        rbOrigin.text = videoItem?.let { originDensity(it) }
+        rbThreeQuarters.text = videoItem?.let { threeQuarterDensity(it) }
+        rbHalf.text = videoItem?.let { halfDensity(it) }
         videoItem?.apply {
             f<TextView>(R.id.tvCancel).setOnClickListener {
                 dismiss()
@@ -104,19 +104,19 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
     }
 
-    private fun originDensity(videoItem: VideoItem): Pair<String, String> {
-        return Pair("${videoItem.width}x${videoItem.height}", "${videoItem.width}:${videoItem.height}")
+    private fun originDensity(videoItem: VideoItem): String {
+        return "${videoItem.width}x${videoItem.height}"
     }
 
-    private fun threeQuarterDensity(videoItem: VideoItem): Pair<String, String> {
+    private fun threeQuarterDensity(videoItem: VideoItem): String {
         var height = (videoItem.height * 4 / 3) - (videoItem.height * 4 / 3) % 2
         var width = (videoItem.width * 4 / 3) - (videoItem.width * 4 / 3) % 2
-        return Pair("${width}x${height}", "${width}:${height}")
+        return "${width}x${height}"
     }
 
-    private fun halfDensity(videoItem: VideoItem): Pair<String, String> {
+    private fun halfDensity(videoItem: VideoItem): String {
         var height = (videoItem.height / 2) - (videoItem.height / 2) % 2
         var width = (videoItem.width / 2) - (videoItem.width / 2) % 2
-        return Pair("${width}x${height}", "${width}:${height}")
+        return "${width}x${height}"
     }
 }

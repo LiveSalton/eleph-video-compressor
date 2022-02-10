@@ -1,8 +1,8 @@
 package com.salton123.eleph.video.compressor.model
 
 import com.salton123.eleph.video.kt.log
-import org.xutils.x
 import java.io.File
+import org.xutils.x
 
 /**
  * Time:2022/2/3 8:51 下午
@@ -18,7 +18,7 @@ data class SqueezeProp(
     fun toFFmpegProp(): String {
         val savePath = getSavePath()
         val processors = Runtime.getRuntime().availableProcessors() / 2
-        val prop = "-i $filePath -vcodec $vcodec -acodec $acodec -vf scale=$scale -y -threads $processors $savePath"
+        val prop = "-i $filePath -vcodec $vcodec -acodec $acodec -vf scale=${scale.replace("x", ":")} -y -threads $processors $savePath"
         log("savePath:$savePath,prop:$prop")
         return prop
     }
@@ -26,6 +26,6 @@ data class SqueezeProp(
     fun getSavePath(): String {
         val file = File(filePath)
         val fileName = file.name.replace(".${file.extension}", "_${vcodec}_${acodec}_${scale}.${file.extension}")
-        return x.app().externalCacheDir.absolutePath + File.separator + fileName
+        return x.app().externalCacheDir.absolutePath + File.separator + "." + fileName
     }
 }
