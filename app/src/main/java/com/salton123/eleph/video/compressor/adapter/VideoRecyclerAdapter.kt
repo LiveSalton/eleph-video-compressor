@@ -38,9 +38,8 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
         val item = dataList[position]
         val context = holder.itemView.context
         val recyclerView = holder.recyclerView
-        val mAdapter = RecyclerContentAdapter()
+        val mAdapter = RecyclerContentAdapter(recyclerView)
         holder.tvTitle.text = Utils.getDateTitle(item)
-//        mAdapter.setHasStableIds(true)
         recyclerView.adapter = mAdapter
         (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         var mSplitItemDecoration: GridSpacingItemDecoration? = null

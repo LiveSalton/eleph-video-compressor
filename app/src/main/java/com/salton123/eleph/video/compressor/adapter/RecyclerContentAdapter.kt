@@ -27,7 +27,7 @@ import kotlin.properties.Delegates
  * Author:
  * Description:
  */
-class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IAdapterDiffer {
+class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<ContentStubViewHolder>(), IAdapterDiffer {
     private var dataList: MutableList<VideoItem> by Delegates.observable(mutableListOf()) { _, old, new ->
         onDiff(old, new,
             { o, n -> o.filePath == n.filePath },
@@ -107,7 +107,8 @@ class RecyclerContentAdapter : RecyclerView.Adapter<ContentStubViewHolder>(), IA
                 } else if (it < 0) {
                     item.squeezeState = 3
                 }
-                notifyDataSetChanged()
+//                recyclerView.adapter?.notifyDataSetChanged()
+                recyclerView.adapter?.notifyItemChanged(position)
 //                notifyItemChanged(position)
             }
         }
