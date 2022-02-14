@@ -77,7 +77,7 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
             }
         }
         holder.itemView.setOnClickListener {
-            if (item.isSqueezeSuccess && File(item.squeezeSavePath).exists()) {
+            if (item.isSqueezeSuccess() && File(item.squeezeSavePath).exists()) {
                 context.startActivity(Intent(context, VideoPlayActivity::class.java).apply {
                     putExtra("videoItem", item)
                     putExtra("isPlaySqueeze", true)
