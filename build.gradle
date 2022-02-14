@@ -20,6 +20,9 @@ allprojects {
         mavenLocal()
         maven { url 'https://jitpack.io' }
         maven { url '../../repo' }
+        flatDir {
+            dirs 'src/main/libs'
+        }
         maven { url 'https://dl.bintray.com/umsdk/release' }
         maven { url 'https://jitpack.io' }//添加jitpack仓库地址
         maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
