@@ -12,10 +12,10 @@
     <string name="if_info">&#xe77e;</string>
     <string name="if_delete">&#xe67e;</string>
     <string name="if_no_data">&#xe62c;</string>
+    <string name="if_menu">&#xe7f2;</string>
 
     <string name="if_home">&#xe603;</string>
     <string name="if_retangel">&#xe648;</string>
     <string name="if_right_arrow">&#xe642;</string>
-    <string name="if_menu">&#xe630;</string>
     <string name="if_left_arrow">&#xe628;</string>
 </resources>
