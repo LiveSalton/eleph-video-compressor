@@ -18,13 +18,16 @@ object FFmpegCompressor {
 
     fun totalNbFrames(filePath: String): Int {
         var totalFrames = -1
-        val session = FFprobeKit.getMediaInformation(filePath)
-        session.mediaInformation.streams.forEach { streamInfo ->
-            if ("video" == streamInfo.allProperties.optString("codec_type")) {
-                totalFrames = streamInfo.allProperties.optString("nb_frames").toIntOrNull() ?: 0
+        try {
+            val session = FFprobeKit.getMediaInformation(filePath)
+            session.mediaInformation.streams.forEach { streamInfo ->
+                if ("video" == streamInfo.allProperties.optString("codec_type")) {
+                    totalFrames = streamInfo.allProperties.optString("nb_frames").toIntOrNull() ?: 0
+                }
             }
+        } finally {
+            return totalFrames
         }
-        return totalFrames
     }
 
     fun compress(filePath: String, callback: (Int) -> Unit) {
@@ -58,7 +61,7 @@ object FFmpegCompressor {
                 callback.invoke(-1)
             }
         }, {
-//            Log.i(TAG, "logCallback:$it")
+            Log.i(TAG, "logCallback:$it")
         }, {
             Log.i(TAG, "statisticsCallback:$it")
             callback.invoke(it.videoFrameNumber * 100 / totalFrames)
@@ -77,6 +80,14 @@ object FFmpegCompressor {
 
     fun help() {
         FFmpegKit.executeAsync("-encoders", {
+            Log.i(TAG, "help:$it")
+        }, {
+//            Log.i(TAG, "help:$it")
+        }, {
+//            Log.i(TAG, "help:$it")
+        })
+
+        FFmpegKit.executeAsync("-devices", {
             Log.i(TAG, "help:$it")
         }, {
 //            Log.i(TAG, "help:$it")
