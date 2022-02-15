@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/immersionBarHeight"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/statusBarHeight">
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/immersionBarHeight"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/statusBarHeight">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <com.salton123.view.IconFontTextView
+                android:id="@+id/tvMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/if_menu"
+                android:textColor="@color/black70"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="#000"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <com.salton123.view.IconFontTextView
-            android:id="@+id/tvMore"
+            android:id="@+id/tvClearInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/if_menu"
-            android:textColor="@color/black70"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </FrameLayout>
+            android:textColor="#C1C1C1"
+            android:textSize="10sp"
+            tools:text="累计压缩17个视频，节省5000MB" />
+    </LinearLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"

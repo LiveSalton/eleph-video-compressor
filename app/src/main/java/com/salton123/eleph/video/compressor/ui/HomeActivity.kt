@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.salton123.base.DelegateActivity
 import com.salton123.base.feature.ImmersionFeature
+import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
@@ -54,7 +55,9 @@ class HomeActivity : DelegateActivity() {
 
     override fun initViewAndData() {
         initListView()
-        FFmpegCompressor.help()
+        if (BuildConfig.DEBUG) {
+            FFmpegCompressor.help()
+        }
     }
 
     private fun initListView() {

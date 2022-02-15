@@ -8,7 +8,7 @@
     <!--<color name="b4">#ffffffff</color>-->
     <!--<color name="b6">#ccffffff</color>-->
     <color name="color_ff43b0f0">#ff43b0f0</color>
-
+    <color name="default_background">#FFFFFF</color>
     <color name="color_f44336_material">#f44336</color>
     <color name="color_e91e63_material">#e91e63</color>
     <color name="color_9c27b0_material">#9c27b0</color>
