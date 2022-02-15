@@ -1,5 +1,6 @@
 package com.salton123.eleph.video.compressor.persistence
 
+import com.salton123.eleph.video.compressor.model.ClearInfo
 import com.salton123.eleph.video.compressor.model.VideoItem
 
 /**
@@ -13,4 +14,5 @@ interface VideoInfoDao {
     fun update(item: VideoItem)
     fun getItem(filePath: String): VideoItem?
     fun getAll(): MutableList<VideoItem>
+    fun getClearInfo(): ClearInfo
 }

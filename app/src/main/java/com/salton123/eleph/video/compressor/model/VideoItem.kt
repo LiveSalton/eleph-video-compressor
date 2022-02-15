@@ -20,7 +20,8 @@ data class VideoItem(
     var squeezeState: Int = 0,  //0 default 1 ing 2 success 3 failed
     var squeezeSavePath: String = "",
     var squeezeSize: Long = 0,
-    var duration: Long = 0
+    var duration: Long = 0,
+    var slimSize: Long = 0
 ) : Serializable {
 
     fun originDensity(): String {

@@ -12,7 +12,7 @@ import android.util.Log
  */
 const val TABLE_NAME = "VideoInfo"
 
-class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", null, 1) {
+class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", null, 2) {
     private val tag = "VideoSql"
 
     //    CREATE TABLE "video_info" ( "filePath" TEXT PRIMARY KEY, "compressProgress" INTEGER ,"createdAt" INTEGER ,"dirName" TEXT ,"duration" INTEGER  ,"height" INTEGER ,"letter" TEXT ,"mimeType" TEXT ,"name" TEXT ,"playedPosition" INTEGER ,"size" INTEGER ,"updatedAt" INTEGER ,"width" INTEGER  );
@@ -33,7 +33,8 @@ class VideoSql(context: Context) : SQLiteOpenHelper(context, "video_info.db", nu
                 "squeezeState INTEGER," +
                 "squeezeSavePath TEXT," +
                 "squeezeSize INTEGER," +
-                "duration INTEGER" +
+                "duration INTEGER," +
+                "slimSize INTEGER" +
                 ")")
         }
     }

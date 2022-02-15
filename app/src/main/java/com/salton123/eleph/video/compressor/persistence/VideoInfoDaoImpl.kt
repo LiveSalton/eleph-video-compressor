@@ -2,6 +2,7 @@ package com.salton123.eleph.video.compressor.persistence
 
 import android.content.ContentValues
 import android.content.Context
+import com.salton123.eleph.video.compressor.model.ClearInfo
 import com.salton123.eleph.video.compressor.model.VideoItem
 
 /**
@@ -29,6 +30,7 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
             put("squeezeSavePath", item.squeezeSavePath)
             put("squeezeSize", item.squeezeSize)
             put("duration", item.duration)
+            put("slimSize", item.slimSize)
             sql.writableDatabase.also {
                 it.insert(TABLE_NAME, null, this)
                 it.close()
@@ -58,6 +60,7 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
             put("squeezeSavePath", item.squeezeSavePath)
             put("squeezeSize", item.squeezeSize)
             put("duration", item.duration)
+            put("slimSize", item.slimSize)
             sql.writableDatabase.also {
                 it.update(TABLE_NAME, this, "filePath=?", arrayOf("${item.filePath}"))
                 it.close()
@@ -85,6 +88,7 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
                     videoItem?.squeezeSavePath = cursor.getString(10)
                     videoItem?.squeezeSize = cursor.getLong(11)
                     videoItem?.duration = cursor.getLong(12)
+                    videoItem?.slimSize = cursor.getLong(13)
                 }
                 it.close()
             }
@@ -113,12 +117,32 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
                     videoItem.squeezeSavePath = cursor.getString(10)
                     videoItem.squeezeSize = cursor.getLong(11)
                     videoItem.duration = cursor.getLong(12)
+                    videoItem.slimSize = cursor.getLong(13)
                     dataList.add(videoItem)
                 }
                 it.close()
             }
         } finally {
             return dataList
+        }
+    }
+
+    override fun getClearInfo(): ClearInfo {
+        var clearInfo = ClearInfo(0, 0)
+        try {
+            sql.readableDatabase.also {
+                val cursor = it.rawQuery(
+                    "select count(slimSize) as squeezeCount, sum(slimSize) as squeezeTotal " +
+                        "from $TABLE_NAME where slimSize > 0",
+                    null)
+                while (cursor.moveToNext()) {
+                    clearInfo.squeezeCount = cursor.getInt(0)
+                    clearInfo.squeezeTotal = cursor.getLong(1)
+                }
+                it.close()
+            }
+        } finally {
+            return clearInfo
         }
     }
 }

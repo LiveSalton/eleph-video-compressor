@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Process
+import android.text.format.Formatter
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,6 +18,7 @@ import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
+import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.service.SqueezeService
@@ -37,6 +39,7 @@ class HomeActivity : DelegateActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var llEmptyView: LinearLayout
     private lateinit var tvMore: TextView
+    private lateinit var tvClearInfo: TextView
     private lateinit var mAdapter: VideoRecyclerAdapter
     override fun initVariable(savedInstanceState: Bundle?) {
         mImmersionFeature = ImmersionFeature(this)
@@ -68,6 +71,7 @@ class HomeActivity : DelegateActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         llEmptyView = findViewById(R.id.llEmptyView)
         tvMore = findViewById(R.id.tvMore)
+        tvClearInfo = findViewById(R.id.tvClearInfo)
         mAdapter = VideoRecyclerAdapter()
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -87,6 +91,15 @@ class HomeActivity : DelegateActivity() {
         tvMore.setOnClickListener {
             openActivity(SqueezeRecyclerActivity::class.java, Bundle())
         }
+        updateClearInfo()
+    }
+
+    private fun updateClearInfo() {
+        val clearInfo = VideoDao.getClearInfo()
+        val clearText = String.format("累计压缩%d个视频，节省%s内存",
+            clearInfo.squeezeCount,
+            Formatter.formatFileSize(activity(), clearInfo.squeezeTotal))
+        tvClearInfo.text = clearText
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

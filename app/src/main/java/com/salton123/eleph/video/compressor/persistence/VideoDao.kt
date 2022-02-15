@@ -1,5 +1,6 @@
 package com.salton123.eleph.video.compressor.persistence
 
+import com.salton123.eleph.video.compressor.model.ClearInfo
 import com.salton123.eleph.video.compressor.model.VideoItem
 import kt.log
 import org.xutils.x
@@ -44,6 +45,12 @@ object VideoDao {
     fun findAll(): MutableList<VideoItem>? {
         val ret = videoInfoDaoImpl.getAll()
         log("findAll,${ret.size}")
+        return ret
+    }
+
+    fun getClearInfo(): ClearInfo {
+        val ret = videoInfoDaoImpl.getClearInfo()
+        log("getClearInfo:$ret")
         return ret
     }
 }
