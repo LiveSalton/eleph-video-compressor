@@ -103,13 +103,13 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
                 if (it == 100) {
                     item.squeezeState = 2
                     item.squeezeSavePath = prop.getSavePath()
+                    item.squeezeSize = File(prop.getSavePath()).length()
+                    item.slimSize = item.size - item.squeezeSize
                     VideoDao.updateVideo(item)
                 } else if (it < 0) {
                     item.squeezeState = 3
                 }
-//                recyclerView.adapter?.notifyDataSetChanged()
                 recyclerView.adapter?.notifyItemChanged(position)
-//                notifyItemChanged(position)
             }
         }
     }

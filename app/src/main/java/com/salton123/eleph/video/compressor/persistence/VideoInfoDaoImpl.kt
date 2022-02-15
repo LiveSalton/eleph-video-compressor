@@ -132,7 +132,7 @@ class VideoInfoDaoImpl(context: Context) : VideoInfoDao {
         try {
             sql.readableDatabase.also {
                 val cursor = it.rawQuery(
-                    "select count(slimSize) as squeezeCount, sum(slimSize) as squeezeTotal " +
+                    "select count(slimSize), sum(slimSize)" +
                         "from $TABLE_NAME where slimSize > 0",
                     null)
                 while (cursor.moveToNext()) {
