@@ -94,7 +94,7 @@ class HomeActivity : DelegateActivity() {
         updateClearInfo()
     }
 
-    private fun updateClearInfo() {
+    fun updateClearInfo() {
         val clearInfo = VideoDao.getClearInfo()
         val clearText = String.format("累计压缩%d个视频，节省%s内存",
             clearInfo.squeezeCount,

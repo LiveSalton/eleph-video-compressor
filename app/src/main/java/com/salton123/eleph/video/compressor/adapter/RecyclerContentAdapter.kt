@@ -1,7 +1,6 @@
 package com.salton123.eleph.video.compressor.adapter
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.text.format.Formatter
 import android.view.View
@@ -14,9 +13,9 @@ import com.salton123.eleph.video.compressor.model.SqueezeProp
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
+import com.salton123.eleph.video.compressor.ui.HomeActivity
 import com.salton123.eleph.video.compressor.ui.SqueezeOptionPopupComp
 import com.salton123.eleph.video.compressor.ui.VideoMenuPopupComp
-import com.salton123.eleph.video.compressor.ui.VideoPlayActivity
 import kt.runOnUi
 import java.io.File
 import java.util.concurrent.CopyOnWriteArrayList
@@ -44,23 +43,29 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
         val item = dataList[position]
         val context = holder.itemView.context
         holder.tvTitle.text = item.name
-        if (item.squeezeState != 2) {
-            var squeezeTip = if (item.squeezeProgress == -1) {
-                "failed"
-            } else if (item.squeezeProgress > 100) {
-                "processing"
-            } else if (item.squeezeProgress == 100) {
-                "success"
-            } else {
-                "${item.squeezeProgress}%"
+        if (!item.isSqueezeSuccess()) {
+            when {
+                item.squeezeProgress in 1..99 -> {
+                    holder.tvProgress.text = "${item.squeezeProgress}%"
+                    holder.tvProgress.visibility = View.VISIBLE
+                }
+                item.squeezeProgress < 0 -> {
+                    holder.tvProgress.text = "failed"
+                    holder.tvProgress.visibility = View.VISIBLE
+                }
+                item.squeezeProgress > 100 -> {
+                    holder.tvProgress.text = "processing"
+                    holder.tvProgress.visibility = View.VISIBLE
+                }
+                else -> {
+                    holder.tvProgress.visibility = View.GONE
+                }
             }
-            holder.tvProgress.text = squeezeTip
             holder.tvSubTitle.text = Formatter.formatFileSize(context, item.size)
         } else {
-            holder.tvProgress.text = "success"
+            holder.tvProgress.visibility = View.GONE
             holder.tvSubTitle.text = "${Formatter.formatFileSize(context, item.size)} -> ${Formatter.formatFileSize(context, File(item.squeezeSavePath).length())}"
         }
-
 
         Glide.with(context).load(item.filePath)
             .thumbnail(0.3f)
@@ -77,21 +82,29 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
             }
         }
         holder.itemView.setOnClickListener {
-            if (item.isSqueezeSuccess() && File(item.squeezeSavePath).exists()) {
-                context.startActivity(Intent(context, VideoPlayActivity::class.java).apply {
-                    putExtra("videoItem", item)
-                    putExtra("isPlaySqueeze", true)
-                })
-            } else {
-                SqueezeOptionPopupComp().apply {
-                    arguments = Bundle().apply {
-                        putSerializable("videoItem", item)
-                        putInt("position", position)
-                    }
-                    show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
-                    attachAdapter(this@RecyclerContentAdapter)
+            SqueezeOptionPopupComp().apply {
+                arguments = Bundle().apply {
+                    putSerializable("videoItem", item)
+                    putInt("position", position)
                 }
+                show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
+                attachAdapter(this@RecyclerContentAdapter)
             }
+//            if (item.isSqueezeSuccess() && File(item.squeezeSavePath).exists()) {
+//                context.startActivity(Intent(context, VideoPlayActivity::class.java).apply {
+//                    putExtra("videoItem", item)
+//                    putExtra("isPlaySqueeze", true)
+//                })
+//            } else {
+//                SqueezeOptionPopupComp().apply {
+//                    arguments = Bundle().apply {
+//                        putSerializable("videoItem", item)
+//                        putInt("position", position)
+//                    }
+//                    show((context as Activity).fragmentManager, "SqueezeOptionPopupComp")
+//                    attachAdapter(this@RecyclerContentAdapter)
+//                }
+//            }
         }
     }
 
@@ -106,6 +119,7 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
                     item.squeezeSize = File(prop.getSavePath()).length()
                     item.slimSize = item.size - item.squeezeSize
                     VideoDao.updateVideo(item)
+                    (recyclerView.context as HomeActivity?)?.updateClearInfo()
                 } else if (it < 0) {
                     item.squeezeState = 3
                 }
