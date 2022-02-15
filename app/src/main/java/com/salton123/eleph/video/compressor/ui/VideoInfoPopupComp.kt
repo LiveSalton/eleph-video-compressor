@@ -15,9 +15,9 @@ import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.utils.Utils
-import com.salton123.eleph.video.kt.executeByCached
-import com.salton123.eleph.video.kt.runOnUi
-import com.salton123.util.ScreenUtils
+import kt.executeByCached
+import kt.runOnUi
+import com.salton123.utils.ScreenUtils
 import com.salton123.view.IconFontTextView
 import java.text.SimpleDateFormat
 import java.util.Locale

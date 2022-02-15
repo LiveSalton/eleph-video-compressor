@@ -10,8 +10,7 @@ import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
-import com.salton123.eleph.video.compressor.utils.Utils
-import com.salton123.eleph.video.kt.toast
+import kt.toast
 import java.io.File
 
 /**

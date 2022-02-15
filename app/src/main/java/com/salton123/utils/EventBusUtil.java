@@ -1,4 +1,4 @@
-package com.salton123.util;
+package com.salton123.utils;
 
 /**
  * User: newSalton@outlook.com

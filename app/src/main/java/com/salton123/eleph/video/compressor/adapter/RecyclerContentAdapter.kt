@@ -17,7 +17,7 @@ import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.ui.SqueezeOptionPopupComp
 import com.salton123.eleph.video.compressor.ui.VideoMenuPopupComp
 import com.salton123.eleph.video.compressor.ui.VideoPlayActivity
-import com.salton123.eleph.video.kt.runOnUi
+import kt.runOnUi
 import java.io.File
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.properties.Delegates

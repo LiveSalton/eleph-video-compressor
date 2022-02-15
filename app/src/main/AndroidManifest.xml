@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
@@ -26,12 +27,14 @@
         <activity
             android:name="com.salton123.eleph.video.compressor.ui.HomeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTask"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             tools:targetApi="n" />
         <activity
             android:name=".video.compressor.ui.SqueezeRecyclerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTask"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             tools:targetApi="n" />
@@ -39,6 +42,7 @@
         <activity
             android:name=".video.compressor.ui.VideoPlayActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTask"
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             tools:targetApi="n" />
@@ -56,70 +60,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="about" />
-                <data android:scheme="javascript" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="file"
-                    tools:ignore="AppLinkUrlError" />
-                <data android:scheme="inline" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/mht" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/vnd.wap.xhtml+xml" />
-                <data android:pathPattern=".*\\.mhtml" />
-                <data android:pathPattern=".*\\.mht" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:scheme="file"
-                    tools:ignore="AppLinkUrlError" />
-                <data android:scheme="inline" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/mht" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/vnd.wap.xhtml+xml" />
-                <data android:pathPattern=".*\\.mhtml" />
-                <data android:pathPattern=".*\\.mht" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.WEB_SEARCH" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-            </intent-filter>
         </activity>
 
-        <!--<activity-->
-        <!--android:name="com.salton123.video.VideoPlayActivity"-->
-        <!--android:configChanges="keyboard|keyboardHidden|orientation|screenSize"-->
-        <!--android:hardwareAccelerated="true"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:screenOrientation="landscape"-->
-        <!--android:theme="@style/SplashTheme"-->
-        <!--android:windowSoftInputMode="adjustResize|stateHidden"-->
-        <!--&gt;-->
-        <!--</activity>-->
-        <!-- FileProvider 配置 -->
+        <service
+            android:name="com.salton123.service.SqueezeService"
+            android:enabled="true"
+            android:exported="true" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

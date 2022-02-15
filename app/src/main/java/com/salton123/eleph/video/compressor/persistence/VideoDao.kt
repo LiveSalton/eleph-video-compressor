@@ -1,7 +1,7 @@
 package com.salton123.eleph.video.compressor.persistence
 
 import com.salton123.eleph.video.compressor.model.VideoItem
-import com.salton123.eleph.video.kt.log
+import kt.log
 import org.xutils.x
 
 /**

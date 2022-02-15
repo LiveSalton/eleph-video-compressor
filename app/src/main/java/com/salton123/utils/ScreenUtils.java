@@ -1,4 +1,4 @@
-package com.salton123.util;
+package com.salton123.utils;
 
 import android.app.Activity;
 import android.content.Context;

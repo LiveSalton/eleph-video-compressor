@@ -1,6 +1,7 @@
 package com.salton123.eleph.video.compressor.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Process
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.salton123.base.DelegateActivity
@@ -17,7 +19,8 @@ import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
-import com.salton123.eleph.video.kt.runOnUi
+import com.salton123.service.SqueezeService
+import kt.runOnUi
 
 /**
  * Time:2022/1/29 11:40 上午
@@ -58,6 +61,7 @@ class HomeActivity : DelegateActivity() {
         if (BuildConfig.DEBUG) {
             FFmpegCompressor.help()
         }
+        ContextCompat.startForegroundService(this, Intent(this, SqueezeService::class.java))
     }
 
     private fun initListView() {

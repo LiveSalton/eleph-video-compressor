@@ -10,7 +10,7 @@ import com.salton123.eleph.video.compressor.adapter.holder.VideoRecyclerViewHold
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.utils.Utils
 import com.salton123.eleph.video.compressor.widget.GridSpacingItemDecoration
-import com.salton123.util.ScreenUtils
+import com.salton123.utils.ScreenUtils
 import kotlin.properties.Delegates
 
 /**

@@ -13,7 +13,7 @@ import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
 import com.salton123.eleph.video.compressor.model.SqueezeProp
 import com.salton123.eleph.video.compressor.model.VideoItem
-import com.salton123.util.ScreenUtils
+import com.salton123.utils.ScreenUtils
 
 /**
  * Time:2022/2/3 10:08 下午

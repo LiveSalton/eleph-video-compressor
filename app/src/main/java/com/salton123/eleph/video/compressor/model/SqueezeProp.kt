@@ -1,6 +1,6 @@
 package com.salton123.eleph.video.compressor.model
 
-import com.salton123.eleph.video.kt.log
+import kt.log
 import java.io.File
 import org.xutils.x
 

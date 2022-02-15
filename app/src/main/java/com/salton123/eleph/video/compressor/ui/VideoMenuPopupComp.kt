@@ -15,9 +15,9 @@ import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.ui.dialog.RenameDialog
-import com.salton123.eleph.video.kt.toast
+import kt.toast
 import com.salton123.manager.ActivityLifeCycleManager
-import com.salton123.util.ScreenUtils
+import com.salton123.utils.ScreenUtils
 import java.io.File
 
 /**

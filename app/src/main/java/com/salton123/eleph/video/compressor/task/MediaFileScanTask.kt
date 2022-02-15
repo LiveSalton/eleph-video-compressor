@@ -4,9 +4,9 @@ import android.os.Environment
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.utils.Utils
-import com.salton123.eleph.video.kt.executeByCached
-import com.salton123.eleph.video.kt.executeByIo
-import com.salton123.eleph.video.kt.log
+import kt.executeByCached
+import kt.executeByIo
+import kt.log
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList

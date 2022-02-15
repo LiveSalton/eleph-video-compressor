@@ -1,4 +1,4 @@
-package com.salton123.eleph.video.kt
+package kt
 
 import android.util.Log
 import android.widget.Toast

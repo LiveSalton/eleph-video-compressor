@@ -1,6 +1,6 @@
 package com.salton123.base.feature;
 
-import com.salton123.util.EventBusUtil;
+import com.salton123.utils.EventBusUtil;
 
 /**
  * User: newSalton@outlook.com

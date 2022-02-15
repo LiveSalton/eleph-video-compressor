@@ -5,7 +5,7 @@ import android.media.MediaMetadataRetriever
 import android.text.TextUtils
 import android.util.Log
 import com.salton123.eleph.video.compressor.model.VideoItem
-import com.salton123.eleph.video.kt.log
+import kt.log
 import org.xutils.x
 import java.io.File
 import java.text.SimpleDateFormat
