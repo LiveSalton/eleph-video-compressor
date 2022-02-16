@@ -19,6 +19,7 @@ ext {
             appDevelop    : true,//# 是否开发模式，true会打包raw文件
             googleAdMobId : "ca-app-pub-2681886362144670~2855094593",
             googleRewardId: "ca-app-pub-2681886362144670/3052521243",
+            googleBannerId: "ca-app-pub-2681886362144670/9557385697",
     ]
 
     manifestPlaceholders = [
