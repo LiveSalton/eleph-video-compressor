@@ -11,6 +11,7 @@ import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.widget.GridSpacingItemDecoration
 import com.salton123.utils.DateUtils
 import com.salton123.utils.ScreenUtils
+import java.util.Date
 import kotlin.properties.Delegates
 
 /**
@@ -39,7 +40,7 @@ class VideoRecyclerAdapter : RecyclerView.Adapter<VideoRecyclerViewHolder>(), IA
         val context = holder.itemView.context
         val recyclerView = holder.recyclerView
         val mAdapter = RecyclerContentAdapter(recyclerView)
-        holder.tvTitle.text = DateUtils.mailTimeFormat(item)
+        holder.tvTitle.text = DateUtils.timeFormatNearby(Date(item))
         recyclerView.adapter = mAdapter
         (recyclerView.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
         var mSplitItemDecoration: GridSpacingItemDecoration? = null

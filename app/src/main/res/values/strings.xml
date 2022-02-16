@@ -15,4 +15,16 @@
     <string name="notification_channel_id">squeeze_video</string>
     <string name="notification_title">App is squeezing your videos.</string>
     <string name="notification_content">Click to see details</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="monday">星期一</string>
+    <string name="tuesday">星期二</string>
+    <string name="wednesday">星期三</string>
+    <string name="thursday">星期四</string>
+    <string name="friday">星期五</string>
+    <string name="saturday">星期六</string>
+    <string name="sunday">星期日</string>
 </resources>
