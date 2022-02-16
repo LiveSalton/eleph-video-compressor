@@ -18,6 +18,7 @@ import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
+import com.salton123.eleph.video.compressor.manager.AdMobManager
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
@@ -89,7 +90,8 @@ class HomeActivity : DelegateActivity() {
             }
         }
         tvMore.setOnClickListener {
-            openActivity(SqueezeRecyclerActivity::class.java, Bundle())
+            AdMobManager.loadAd(this)
+//            openActivity(SqueezeRecyclerActivity::class.java, Bundle())
         }
         updateClearInfo()
     }

@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$properyVersion.kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.10'
         // Add the Crashlytics Gradle plugin
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
@@ -33,19 +33,6 @@ allprojects {
     configurations.all {
 //        transitive = false
         resolutionStrategy {
-            force "com.android.support:support-v4:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:support-annotations:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:design:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:recyclerview-v7:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:cardview-v7:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:design:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:support-compat:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:support-core-ui:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:support-core-utils:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:support-fragment:${dependVersion.androidSupportSdkVersion}"
-            force "org.jetbrains.kotlin:kotlin-stdlib:${properyVersion.kotlinVersion}"
-            force "com.salton123:xlog:0.0.0.9"
 //            force "com.android.support.constraint:constraint-layout:1.0.2"
         }
     }

@@ -23,3 +23,15 @@
 
  -keep class com.salton123.eleph.video.compressor.model.** { *; }
 # -keep class org.xutils.db.** { *; }
+
+-keep class com.arthenica.ffmpegkit.FFmpegKitConfig {
+    native <methods>;
+    void log(long, int, byte[]);
+    void statistics(long, int, float, float, long , int, double, double);
+    int safOpen(int);
+    int safClose(int);
+}
+
+-keep class com.arthenica.ffmpegkit.AbiDetect {
+    native <methods>;
+}
