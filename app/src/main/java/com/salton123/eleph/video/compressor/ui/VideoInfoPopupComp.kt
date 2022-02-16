@@ -3,7 +3,6 @@ package com.salton123.eleph.video.compressor.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.format.Formatter
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -14,11 +13,10 @@ import com.salton123.base.BaseDialogFragment
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
-import com.salton123.eleph.video.compressor.utils.Utils
-import kt.executeByCached
-import kt.runOnUi
 import com.salton123.utils.ScreenUtils
 import com.salton123.view.IconFontTextView
+import kt.executeByCached
+import kt.runOnUi
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -46,10 +44,10 @@ class VideoInfoPopupComp : BaseDialogFragment() {
         videoItem?.apply {
             f<TextView>(R.id.tvTitleContent).text = name
             f<TextView>(R.id.tvResolutionContent).text = "${width}x${height}"
-            f<TextView>(R.id.tvSizeContent).text = Formatter.formatFileSize(context, size)
+            f<TextView>(R.id.tvSizeContent).text = sizeOfStr()
             f<TextView>(R.id.tvFormatContent).text = mimeType
             f<TextView>(R.id.tvPathContent).text = filePath
-            f<TextView>(R.id.tvDurationContent).text = Utils.formatTime(duration)
+            f<TextView>(R.id.tvDurationContent).text = durationOfStr()
             f<TextView>(R.id.tvDateContent).text = simpleDateFormat.format(createdAt)
             f<TextView>(R.id.tvClose).setOnClickListener {
                 dismissAllowingStateLoss()

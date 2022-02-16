@@ -1,5 +1,8 @@
 package com.salton123.eleph.video.compressor.model
 
+import android.text.format.Formatter
+import com.salton123.eleph.video.compressor.utils.Utils
+import org.xutils.x
 import java.io.Serializable
 
 /**
@@ -42,5 +45,13 @@ data class VideoItem(
 
     fun isSqueezeSuccess(): Boolean {
         return squeezeState == 2
+    }
+
+    fun sizeOfStr(): String {
+        return Formatter.formatFileSize(x.app(), size)
+    }
+
+    fun durationOfStr(): String {
+        return Utils.formatTime(duration)
     }
 }

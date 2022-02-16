@@ -1,5 +1,6 @@
 package com.salton123.eleph.video.compressor.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -34,13 +35,29 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
     private lateinit var rbOrigin: RadioButton
     private lateinit var rbThreeQuarters: RadioButton
     private lateinit var rbHalf: RadioButton
+    private lateinit var tvName: TextView
+    private lateinit var tvPlay: TextView
+    private lateinit var tvInfo: TextView
     var encoder = "h264"
     var density = ""
+
     override fun initViewAndData() {
         val videoItem = arguments.getSerializable("videoItem") as VideoItem?
         val position = arguments.getInt("position")
         density = videoItem?.originDensity() ?: ""
         rgEncoder = f(R.id.rgEncoder)
+        tvName = f(R.id.tvName)
+        tvPlay = f(R.id.tvPlay)
+        tvInfo = f(R.id.tvInfo)
+        tvName.text = videoItem?.name ?: ""
+        tvPlay.setOnClickListener {
+            startActivity(Intent(activity(), VideoPlayActivity::class.java).apply {
+                putExtra("videoItem", videoItem)
+            })
+        }
+
+        tvInfo.setText("${videoItem?.originDensity()} | ${videoItem?.sizeOfStr()} | " +
+            "${videoItem?.mimeType} | ${videoItem?.durationOfStr()}")
         rgEncoder.setOnCheckedChangeListener { _, checkedId ->
             encoder = when (checkedId) {
                 R.id.rbH265 -> {
@@ -103,5 +120,4 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         window.setWindowAnimations(R.style.slide_popup_ani)
         window.setBackgroundDrawable(ColorDrawable(Color.WHITE))
     }
-
 }

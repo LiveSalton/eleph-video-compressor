@@ -8,22 +8,45 @@
     android:paddingEnd="10dp"
     android:paddingBottom="20dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="hello.mp4"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:text="hello.mp4"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:singleLine="true" />
+
+        <com.salton123.view.IconFontTextView
+            android:id="@+id/tvPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:lines="1"
+            android:text="@string/if_play"
+            android:textColor="@color/color_ff5722_material"
+            android:textSize="24sp" />
+    </LinearLayout>
+
 
     <TextView
+        android:id="@+id/tvInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:lines="1"
@@ -35,9 +58,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/shape_op"
         android:orientation="vertical"
         android:paddingTop="10dp"
-        android:background="@drawable/shape_op"
         android:paddingBottom="10dp">
 
         <LinearLayout
@@ -56,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/if_resize"
-                    android:textColor="@color/color_4caf50_material"
+                    android:text="@string/if_movie"
+                    android:textColor="@color/color_81C784_material"
                     android:textSize="20sp" />
 
                 <TextView
@@ -68,6 +91,16 @@
                     android:gravity="center"
                     android:text="@string/encode"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="（编码质量 h265 > h264 > mpeg)"
+                    android:textColor="@color/black35"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <RadioGroup
@@ -103,7 +136,8 @@
                     android:button="@null"
                     android:checked="false"
                     android:gravity="center"
-                    android:text="h265" />
+                    android:text="h265"
+                    android:textColor="@color/black70" />
 
                 <RadioButton
                     android:id="@+id/rbMpeg4"
@@ -116,8 +150,8 @@
                     android:button="@null"
                     android:checked="false"
                     android:gravity="center"
-                    android:text="mpeg" />
-
+                    android:text="mpeg"
+                    android:textColor="@color/black70" />
             </RadioGroup>
         </LinearLayout>
 
@@ -127,13 +161,41 @@
             android:layout_marginTop="15dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="尺寸"
-                android:textSize="18sp" />
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
 
+                <com.salton123.view.IconFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/if_resize"
+                    android:textColor="@color/color_81C784_material"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="尺寸"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="（分辨率越小，体积越小，清晰度观感变差)"
+                    android:textColor="@color/black35"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
             <RadioGroup
                 android:id="@+id/rgDensity"
@@ -155,69 +217,76 @@
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
-                    android:text="1280*1920" />
+                    android:text="1280*1920"
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/rbThreeQuarters"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_channel_gift_indicator_bg"
                     android:button="@null"
                     android:checked="false"
                     android:gravity="center"
-                    android:text="960*1440" />
+                    android:text="960*1440"
+                    android:textColor="@color/black70"
+                    android:textSize="14sp" />
 
                 <RadioButton
                     android:id="@+id/rbHalf"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:background="@drawable/selector_channel_gift_indicator_bg"
                     android:button="@null"
                     android:checked="false"
                     android:gravity="center"
-                    android:text="640*860" />
+                    android:text="640*860"
+                    android:textColor="@color/black70"
+                    android:textSize="14sp" />
 
             </RadioGroup>
         </LinearLayout>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:gravity="end|center_vertical"
-            android:orientation="horizontal">
+            android:padding="5dp"
+            android:text="Cancel"
+            android:textColor="@color/color_4caf50_material"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:padding="5dp"
-                android:text="Cancel"
-                android:textColor="@color/color_4caf50_material"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="5dp"
-                android:text="Start"
-                android:textColor="@color/color_4caf50_material"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="5dp"
+            android:text="Start"
+            android:textColor="@color/color_4caf50_material"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
