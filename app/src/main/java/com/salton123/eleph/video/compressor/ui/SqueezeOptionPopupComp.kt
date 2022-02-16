@@ -56,8 +56,8 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
             })
         }
 
-        tvInfo.setText("${videoItem?.originDensity()} | ${videoItem?.sizeOfStr()} | " +
-            "${videoItem?.mimeType} | ${videoItem?.durationOfStr()}")
+        tvInfo.text = "${videoItem?.originDensity()} | ${videoItem?.sizeOfStr()} | " +
+            "${videoItem?.mimeType} | ${videoItem?.durationOfStr()}"
         rgEncoder.setOnCheckedChangeListener { _, checkedId ->
             encoder = when (checkedId) {
                 R.id.rbH265 -> {

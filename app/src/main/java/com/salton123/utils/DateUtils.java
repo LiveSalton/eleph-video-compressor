@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- *
  * 时间工具类（邮件时间显示问题修改）
  * Author wenjing.Ren
  * Date 2019/6/17
@@ -370,9 +369,92 @@ public class DateUtils {
         if (sendCalender.get(Calendar.WEEK_OF_YEAR) == nowCalender.get(Calendar.WEEK_OF_YEAR)) {
             sb.append("星期");
             switch (sendCalender.get(Calendar.DAY_OF_WEEK)) {
-                case Calendar.SUNDAY:
-                    sb.append("日 ");
+                case Calendar.MONDAY:
+                    sb.append("一 ");
                     break;
+                case Calendar.TUESDAY:
+                    sb.append("二 ");
+                    break;
+                case Calendar.WEDNESDAY:
+                    sb.append("三 ");
+                    break;
+                case Calendar.THURSDAY:
+                    sb.append("四 ");
+                    break;
+                case Calendar.FRIDAY:
+                    sb.append("五 ");
+                    break;
+                case Calendar.SATURDAY:
+                    sb.append("六 ");
+                    break;
+                default:
+                    sb.append("日 ");
+            }
+            return sb.toString();
+        }
+
+        // 今年的
+        sb.append(sendDateMonth).append("月");
+        sb.append(sendDateDay).append("日 ");
+        return sb.toString();
+    }
+
+    /**
+     * 邮件聊天页时间格式化
+     * 支持时间精度为秒或毫秒
+     *
+     * @param date
+     * @return
+     */
+    public static String timeFormatNearby(Date date) {
+        Date now = new Date();
+        StringBuilder sb = new StringBuilder(100);
+
+        Calendar sendCalender = Calendar.getInstance();
+        sendCalender.setTime(date);
+        Calendar nowCalender = Calendar.getInstance();
+        nowCalender.setTime(now);
+
+        int sendDateYear = sendCalender.get(Calendar.YEAR);
+        //如果时间的年份算出来是1970，则可能时间精度是到秒，需要乘于1000以毫秒计算
+        if (sendDateYear == 1970) {
+            date.setTime(date.getTime() * 1000);
+            sendCalender.setTime(date);
+            sendDateYear = sendCalender.get(Calendar.YEAR);
+        }
+        int dateMonth = sendCalender.get(Calendar.MONTH) + 1;
+        String sendDateMonth = String.valueOf(dateMonth < 10 ? "0" + dateMonth : dateMonth);
+        int dateDay = sendCalender.get(Calendar.DATE);
+        String sendDateDay = String.valueOf(dateDay < 10 ? "0" + dateDay : dateDay);
+        int dateHour = sendCalender.get(Calendar.HOUR_OF_DAY);
+        String sendDateHour = String.valueOf(dateHour < 10 ? "0" + dateHour : dateHour);
+        int dateMinute = sendCalender.get(Calendar.MINUTE);
+        String sendDateMinute = String.valueOf(dateMinute < 10 ? "0" + dateMinute : dateMinute);
+
+        // 不是今年
+        if (nowCalender.get(Calendar.YEAR) != sendDateYear) {
+            sb.append(sendDateYear).append("年");
+            sb.append(sendDateMonth).append("月");
+            sb.append(sendDateDay).append("日 ");
+            return sb.toString();
+        }
+
+        // 今天
+        if (isToday(date)) {
+            sb.append("今天");
+            return sb.toString();
+        }
+
+        // 昨天
+        if (isYesterday(date)) {
+            sb.append("昨天");
+            return sb.toString();
+        }
+
+        // 同一周
+        if (sendCalender.get(Calendar.WEEK_OF_YEAR) == nowCalender.get(Calendar.WEEK_OF_YEAR)) {
+            sb.append("星期");
+            switch (sendCalender.get(Calendar.DAY_OF_WEEK)) {
                 case Calendar.MONDAY:
                     sb.append("一 ");
                     break;
@@ -410,8 +492,8 @@ public class DateUtils {
 
     public static boolean isSameDay(final Calendar firstCal, final Calendar secondCal) {
         return (firstCal.get(Calendar.ERA) == secondCal.get(Calendar.ERA) &&
-                firstCal.get(Calendar.YEAR) == secondCal.get(Calendar.YEAR) &&
-                firstCal.get(Calendar.DAY_OF_YEAR) == secondCal.get(Calendar.DAY_OF_YEAR));
+            firstCal.get(Calendar.YEAR) == secondCal.get(Calendar.YEAR) &&
+            firstCal.get(Calendar.DAY_OF_YEAR) == secondCal.get(Calendar.DAY_OF_YEAR));
     }
 
     public static boolean isSameDay(final Date firstDate, final Date secondDate) {
