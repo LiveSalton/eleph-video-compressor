@@ -10,6 +10,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$properyVersion.kotlinVersion"
+        classpath 'com.google.gms:google-services:4.3.10'
+        // Add the Crashlytics Gradle plugin
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
     }
 }
 
@@ -23,9 +26,9 @@ allprojects {
         flatDir {
             dirs 'src/main/libs'
         }
-        maven { url 'https://dl.bintray.com/umsdk/release' }
-        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
-        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
+//        maven { url 'https://dl.bintray.com/umsdk/release' }
+//        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
+//        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
     }
     configurations.all {
 //        transitive = false

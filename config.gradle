@@ -3,7 +3,7 @@ ext {
     android = [
             compileSdkVersion: 28,
             buildToolsVersion: "28.0.3",
-            minSdkVersion    : 16,
+            minSdkVersion    : 19,
             targetSdkVersion : 28,
             versionCode      : 1,
             versionName      : "1.0"
@@ -34,7 +34,7 @@ ext {
 
     properyVersion = [
             repluginVersion: "2.2.4",
-            kotlinVersion  : "1.3.11",
+            kotlinVersion  : "1.4.10",
     ]
 
     supportDeps = [
