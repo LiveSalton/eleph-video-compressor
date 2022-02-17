@@ -57,12 +57,12 @@ object MediaFileScanTask {
     private fun assembleVideoInfo(file: File) {
         val filePath = file.absolutePath
         if (Utils.filterVideoBySuffix(file)) {
-            log("find media file:$filePath")
+//            log("find media file:$filePath")
             val title = Utils.getDateTime(file.lastModified())
             videoMap[title]?.apply {
                 //在集合中找
                 find { it.filePath == filePath }?.let {
-                    log("find the same item:${filePath}")
+//                    log("find the same item:${filePath}")
                     if (!File(filePath).exists()) {
                         executeByIo {
                             VideoDao.deleteVideo(it)
@@ -81,7 +81,7 @@ object MediaFileScanTask {
 
     private fun addVideo(file: File) {
         try {
-            log("addVideo:$file")
+//            log("addVideo:$file")
             if (fileFilter(file)) {
                 val videoItem = Utils.retrieveFile(file)
                 addVideoToMap(videoItem)
