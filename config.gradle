@@ -9,7 +9,9 @@ ext {
             versionName      : "1.0"
     ]
     otherDependencies = [
-            "rxjava": "io.reactivex.rxjava2:rxjava:2.2.3",
+            "glide"        : "com.github.bumptech.glide:glide:4.12.0",
+            "recyclerview" : "androidx.recyclerview:recyclerview:1.2.1",
+            "kotlin-stdlib": "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
     ]
     //依赖第三方配置
     otherDependenciesLibs = otherDependencies.values()

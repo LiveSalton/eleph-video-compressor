@@ -25,6 +25,8 @@ android {
         multiDexEnabled true
         manifestPlaceholders = rootProject.ext.manifestPlaceholders
         buildConfigField "boolean", "APP_DEVELOP", "${rootProject.ext.dependVersion.appDevelop}"
+        buildConfigField "String", "GOOGLE_REWARD_ID", "\"${rootProject.ext.dependVersion.googleRewardId}\""
+        buildConfigField "String", "GOOGLE_BANNER_ID", "\"${rootProject.ext.dependVersion.googleBannerId}\""
     }
 
     signingConfigs {

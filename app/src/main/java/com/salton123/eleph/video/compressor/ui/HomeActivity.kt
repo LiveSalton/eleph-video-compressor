@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Process
 import android.text.format.Formatter
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -39,6 +40,7 @@ class HomeActivity : DelegateActivity() {
     private lateinit var mImmersionFeature: ImmersionFeature
     private lateinit var recyclerView: RecyclerView
     private lateinit var llEmptyView: LinearLayout
+    private lateinit var flAdContainer: FrameLayout
     private lateinit var tvMore: TextView
     private lateinit var tvClearInfo: TextView
     private lateinit var mAdapter: VideoRecyclerAdapter
@@ -73,6 +75,7 @@ class HomeActivity : DelegateActivity() {
         llEmptyView = findViewById(R.id.llEmptyView)
         tvMore = findViewById(R.id.tvMore)
         tvClearInfo = findViewById(R.id.tvClearInfo)
+        flAdContainer = findViewById(R.id.flAdContainer)
         mAdapter = VideoRecyclerAdapter()
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -90,7 +93,8 @@ class HomeActivity : DelegateActivity() {
             }
         }
         tvMore.setOnClickListener {
-            AdMobManager.loadAd(this)
+//            AdMobManager.loadAd(this)
+//            AdMobManager.loadBannerAd(this, flAdContainer)
 //            openActivity(SqueezeRecyclerActivity::class.java, Bundle())
         }
         updateClearInfo()
