@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.view.WindowManager
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -50,8 +51,14 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         tvPlay = f(R.id.tvPlay)
         tvInfo = f(R.id.tvInfo)
         tvName.text = videoItem?.name ?: ""
+        if (videoItem?.squeezeSavePath?.isNotEmpty() == true) {
+            tvPlay.visibility = View.VISIBLE
+        } else {
+            tvPlay.visibility = View.GONE
+        }
         tvPlay.setOnClickListener {
             startActivity(Intent(activity(), VideoPlayActivity::class.java).apply {
+                putExtra("isPlaySqueeze", true)
                 putExtra("videoItem", videoItem)
             })
         }
