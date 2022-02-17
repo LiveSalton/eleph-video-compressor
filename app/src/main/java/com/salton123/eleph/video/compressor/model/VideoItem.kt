@@ -32,8 +32,8 @@ data class VideoItem(
     }
 
     fun threeQuarterDensity(): String {
-        var height = (height * 4 / 3) - (height * 4 / 3) % 2
-        var width = (width * 4 / 3) - (width * 4 / 3) % 2
+        var height = (height * 3 / 4) - (height * 3 / 4) % 2
+        var width = (width * 3 / 4) - (width * 3 / 4) % 2
         return "${width}x${height}"
     }
 
