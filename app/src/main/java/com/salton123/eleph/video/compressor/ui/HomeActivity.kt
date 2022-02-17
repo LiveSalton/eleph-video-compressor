@@ -95,7 +95,7 @@ class HomeActivity : DelegateActivity() {
         tvMore.setOnClickListener {
 //            AdMobManager.loadAd(this)
 //            AdMobManager.loadBannerAd(this, flAdContainer)
-//            openActivity(SqueezeRecyclerActivity::class.java, Bundle())
+            openActivity(SettingActivity::class.java, Bundle())
         }
         updateClearInfo()
     }

@@ -5,8 +5,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 Properties configProp = new Properties()
 configProp.load(new FileInputStream(file("$rootDir/config.properties")))
-
-
+def gitHash = "git rev-parse HEAD".execute().text.trim()
 android {
     ndkVersion "21.4.7075529"
     compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
@@ -23,7 +22,9 @@ android {
 //            , "x86"
         }
         multiDexEnabled true
+
         manifestPlaceholders = rootProject.ext.manifestPlaceholders
+        buildConfigField "String", "GIT_HASH", "\"${gitHash}\""
         buildConfigField "boolean", "APP_DEVELOP", "${rootProject.ext.dependVersion.appDevelop}"
         buildConfigField "String", "GOOGLE_REWARD_ID", "\"${rootProject.ext.dependVersion.googleRewardId}\""
         buildConfigField "String", "GOOGLE_BANNER_ID", "\"${rootProject.ext.dependVersion.googleBannerId}\""

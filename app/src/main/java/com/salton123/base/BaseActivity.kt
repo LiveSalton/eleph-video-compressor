@@ -14,10 +14,11 @@ import com.salton123.eleph.R
  */
 abstract class BaseActivity : DelegateActivity() {
     override fun getLayout(): Int = R.layout.activity_base
-    private lateinit var mImmersionFeature: ImmersionFeature
-    private lateinit var tvBack: TextView
-    private lateinit var tvMore: TextView
-    private lateinit var llContent: LinearLayout
+    lateinit var mImmersionFeature: ImmersionFeature
+    lateinit var tvBack: TextView
+    lateinit var tvMore: TextView
+    lateinit var tvTitle: TextView
+    lateinit var llContent: LinearLayout
     override fun initVariable(savedInstanceState: Bundle?) {
         mImmersionFeature = ImmersionFeature(this)
         addFeature(mImmersionFeature)
@@ -32,6 +33,7 @@ abstract class BaseActivity : DelegateActivity() {
         View.inflate(this, getLayoutId(), llContent)
         tvBack = findViewById(R.id.tvBack)
         tvMore = findViewById(R.id.tvMore)
+        tvTitle = findViewById(R.id.tvTitle)
         tvBack.setOnClickListener {
             finish()
         }

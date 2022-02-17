@@ -27,4 +27,20 @@
     <string name="friday">星期五</string>
     <string name="saturday">星期六</string>
     <string name="sunday">星期日</string>
+    <string name="rate_us">评价</string>
+    <string name="rate_us_tip">如果你喜欢我们的话，请给予我们5星好评。谢谢！</string>
+    <string name="here_s_your_5_stars">5星好评</string>
+    <string name="four_stars">1-4 星</string>
+    <string name="privacy_policy">隐私策略</string>
+    <string name="terms_of_service">服务条款</string>
+    <string name="contacts">联系方式</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_cache">清空缓存</string>
+    <string name="setting_auto">自动登录</string>
+    <string name="setting_about">关于我们</string>
+    <string name="setting_exit">退出登录</string>
+    <string name="info">信息</string>
+    <string name="ver">版本</string>
+    <string name="contacts">联系方式</string>
+
 </resources>
