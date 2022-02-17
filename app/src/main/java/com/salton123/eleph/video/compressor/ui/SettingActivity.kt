@@ -29,15 +29,17 @@ class SettingActivity : BaseActivity() {
         sb_setting_policy = f(R.id.sb_setting_policy)
         sb_setting_terms = f(R.id.sb_setting_terms)
         sb_setting_about.setOnClickListener {
-//            startActivity(Intent())
-
+            startActivity(Intent(this, AboutActivity::class.java))
         }
         sb_setting_contact_us.setOnClickListener {
             val intent = Intent("android.intent.action.SENDTO")
             intent.data = Uri.parse("mailto:newsalton@163.com")
-            intent.putExtra("android.intent.extra.SUBJECT", "Eleph Player - Your Video Player And Cleaner, Android")
+            intent.putExtra(
+                "android.intent.extra.SUBJECT",
+                "${getString(R.string.app_name)} - ${getString(R.string.app_description)}, Android"
+            )
             val stringBuilder = StringBuilder()
-            stringBuilder.append("Eleph Player_Android_" + BuildConfig.VERSION_NAME + "_" + BuildConfig.GIT_HASH)
+            stringBuilder.append("${getString(R.string.app_name)}_Android_" + BuildConfig.VERSION_NAME + "_" + BuildConfig.GIT_HASH)
             stringBuilder.append(Build.VERSION.SDK_INT)
             stringBuilder.append('_')
             stringBuilder.append(Build.MODEL)
@@ -45,7 +47,9 @@ class SettingActivity : BaseActivity() {
             intent.putExtra("android.intent.extra.TEXT", stringBuilder.toString())
             activity().startActivity(intent)
         }
-//        sb_setting_rate_us.setOnClickListener {  }
+        sb_setting_rate_us.setOnClickListener {
+            RateUsPopupComp().show(fragmentManager, "RateUsPopupComp")
+        }
 //        sb_setting_policy.setOnClickListener {  }
 //        sb_setting_terms.setOnClickListener {  }
     }

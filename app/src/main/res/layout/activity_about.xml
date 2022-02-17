@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?><!--suppress AndroidUnknownAttribute -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#eeeeee"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:paddingTop="?android:attr/actionBarSize"
-    app:cardBackgroundColor="@color/white">
+    android:paddingTop="?android:attr/actionBarSize">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,6 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
+                android:background="@drawable/bg_about_info"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
@@ -45,7 +44,7 @@
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:text="@string/app_name"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textAppearance="@style/TextAppearance.Compat.Notification.Info"
                     android:textColor="@color/black"
                     android:textSize="33sp"
                     android:textStyle="bold"
@@ -57,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/bg_about_info"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
@@ -75,18 +75,18 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
                         android:paddingEnd="16dp"
-                        android:paddingBottom="16dp"
                         android:text="@string/info"
                         android:textColor="@color/black85"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         tools:ignore="MissingPrefix,RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/tvVersion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="0.9"
-                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                         android:textColor="@color/black75" />
 
                     <TextView
@@ -94,8 +94,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start|center_vertical"
                         android:paddingEnd="16dp"
-                        android:textSize="10sp"
                         android:text="@string/ver"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/black65"
                         tools:ignore="RtlSymmetry" />
 
@@ -105,14 +105,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="013c82e5"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                         android:textColor="@color/black75" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Build Hash"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/black65"
                         tools:ignore="HardcodedText" />
 
@@ -122,23 +122,29 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="InterdimensionalBoop"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                         android:textColor="@color/black75" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BuildTime"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/black65"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_about_info"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center_vertical"
@@ -169,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:autoLink="web"
                         android:text="www.salton123.com"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                         android:textColor="@color/black75"
                         android:textSize="18sp"
                         tools:ignore="MissingPrefix" />
@@ -179,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10sp"
                         android:text="web-size"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/black65"
                         tools:ignore="HardcodedText" />
 
@@ -188,7 +194,8 @@
                         android:layout_height="wrap_content"
                         android:autoLink="email"
                         android:text="newsalton@163.com"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+
                         android:textColor="@color/black75"
                         android:textSize="18sp"
                         tools:ignore="MissingPrefix" />
@@ -197,7 +204,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="email"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
                         android:textColor="@color/black65"
                         tools:ignore="HardcodedText" />
 

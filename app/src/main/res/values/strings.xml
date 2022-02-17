@@ -9,6 +9,7 @@
     <string name="rename_failed">rename failed</string>
     <string name="encode">编码</string>
     <string name="app_name">视频压缩器</string>
+    <string name="app_description">简洁极致的压缩工具</string>
     <string name="search">搜索</string>
     <string name="cancel">取消</string>
     <string name="information">Information</string>
@@ -41,6 +42,5 @@
     <string name="setting_exit">退出登录</string>
     <string name="info">信息</string>
     <string name="ver">版本</string>
-    <string name="contacts">联系方式</string>
 
 </resources>

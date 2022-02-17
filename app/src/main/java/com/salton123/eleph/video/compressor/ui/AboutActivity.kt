@@ -1,6 +1,8 @@
 package com.salton123.eleph.video.compressor.ui
 
+import android.widget.TextView
 import com.salton123.base.BaseActivity
+import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
 
 /**
@@ -10,19 +12,16 @@ import com.salton123.eleph.R
  * Description:
  */
 class AboutActivity : BaseActivity() {
+    private lateinit var tvVersion: TextView
+    private lateinit var tvBuildHash: TextView
+    private lateinit var tvBuildTime: TextView
+    override fun initViewAndData() {
+        super.initViewAndData()
+        tvTitle.text = getString(R.string.setting_about)
+        tvVersion.text = BuildConfig.VERSION_NAME
+        tvBuildHash.text = BuildConfig.GIT_HASH
+        tvBuildTime.text = BuildConfig.BUILD_TIME
+    }
 
-    //    override fun enableTitleBar(): Boolean = false
-//    override fun initViewAndData(savedInstanceState: Bundle?) {
-//        tvVersion.text = BuildConfig.VERSION_NAME
-//        tvBuildHash.text = BuildConfig.GIT_HASH
-//        tvBuildTime.text = BuildConfig.BUILD_TIME
-//        btnClose.setOnClickListener {
-//            finish()
-//        }
-//    }
-//
-//    override fun getLayoutId(): Int = R.layout.activity_about
-//
-//    override fun getTitleText(): String = getString(R.string.setting_about)
     override fun getLayoutId(): Int = R.layout.activity_about
 }
