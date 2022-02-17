@@ -27,20 +27,20 @@ data class VideoItem(
     var slimSize: Long = 0
 ) : Serializable {
 
-    fun originDensity(): String {
-        return "${width}x${height}"
+    fun originDensity(): Pair<String, String> {
+        return Pair("${width}x${height}", "iw:ih")
     }
 
-    fun threeQuarterDensity(): String {
+    fun threeQuarterDensity(): Pair<String, String> {
         var height = (height * 3 / 4) - (height * 3 / 4) % 2
         var width = (width * 3 / 4) - (width * 3 / 4) % 2
-        return "${width}x${height}"
+        return Pair("${width}x${height}", "iw*.75:ih*.75")
     }
 
-    fun halfDensity(): String {
+    fun halfDensity(): Pair<String, String> {
         var height = (height / 2) - (height / 2) % 2
         var width = (width / 2) - (width / 2) % 2
-        return "${width}x${height}"
+        return Pair("${width}x${height}", "iw*.5:ih*.5")
     }
 
     fun isSqueezeSuccess(): Boolean {

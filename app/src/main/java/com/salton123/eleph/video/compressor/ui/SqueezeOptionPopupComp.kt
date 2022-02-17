@@ -40,12 +40,12 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
     private lateinit var tvPlay: TextView
     private lateinit var tvInfo: TextView
     var encoder = "h264"
-    var density = ""
+    var density: Pair<String, String>? = Pair("", "iw:ih")
 
     override fun initViewAndData() {
         val videoItem = arguments.getSerializable("videoItem") as VideoItem?
         val position = arguments.getInt("position")
-        density = videoItem?.originDensity() ?: ""
+        density = videoItem?.originDensity()
         rgEncoder = f(R.id.rgEncoder)
         tvName = f(R.id.tvName)
         tvPlay = f(R.id.tvPlay)
@@ -82,29 +82,29 @@ class SqueezeOptionPopupComp : BaseDialogFragment() {
         rgDensity.setOnCheckedChangeListener { _, checkedId ->
             density = when (checkedId) {
                 R.id.rbHalf -> {
-                    videoItem?.halfDensity() ?: ""
+                    videoItem?.halfDensity()
                 }
                 R.id.rbThreeQuarters -> {
-                    videoItem?.threeQuarterDensity() ?: ""
+                    videoItem?.threeQuarterDensity()
                 }
                 else -> {
-                    videoItem?.originDensity() ?: ""
+                    videoItem?.originDensity()
                 }
             }
         }
         rbOrigin = f(R.id.rbOrigin)
         rbThreeQuarters = f(R.id.rbThreeQuarters)
         rbHalf = f(R.id.rbHalf)
-        rbOrigin.text = videoItem?.originDensity()
-        rbThreeQuarters.text = videoItem?.threeQuarterDensity()
-        rbHalf.text = videoItem?.halfDensity()
+        rbOrigin.text = videoItem?.originDensity()?.first
+        rbThreeQuarters.text = videoItem?.threeQuarterDensity()?.first
+        rbHalf.text = videoItem?.halfDensity()?.first
         videoItem?.apply {
             f<TextView>(R.id.tvCancel).setOnClickListener {
                 dismiss()
             }
             f<TextView>(R.id.tvSubmit).setOnClickListener {
                 rgEncoder.checkedRadioButtonId
-                val prop = SqueezeProp(videoItem.filePath, encoder, "aac", density)
+                val prop = SqueezeProp(videoItem.filePath, encoder, "aac", density ?: Pair("", "iw:ih"))
                 attachAdapter?.startSqueeze(videoItem, position, prop)
                 dismissAllowingStateLoss()
             }

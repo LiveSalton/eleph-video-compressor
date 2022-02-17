@@ -82,15 +82,24 @@ object MediaFileScanTask {
     private fun addVideo(file: File) {
         try {
             log("addVideo:$file")
-            if (file.length() < 1024 * 1024) {
-                return
+            if (fileFilter(file)) {
+                val videoItem = Utils.retrieveFile(file)
+                addVideoToMap(videoItem)
+                VideoDao.addVideo(videoItem)
             }
-            val videoItem = Utils.retrieveFile(file)
-            addVideoToMap(videoItem)
-            VideoDao.addVideo(videoItem)
         } catch (ex: Exception) {
             //
         }
+    }
+
+    private fun fileFilter(file: File): Boolean {
+        if (file.length() < 1024 * 1024) {
+            return false
+        }
+        if (file.name.contains("_squeeze")) {
+            return false
+        }
+        return true
     }
 
     private fun addVideoToMap(videoItem: VideoItem) {
