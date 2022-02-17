@@ -58,6 +58,13 @@
             android:resizeableActivity="false"
             android:screenOrientation="portrait"
             tools:targetApi="n" />
+        <activity
+            android:name=".video.compressor.ui.PolicyActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTop"
+            android:resizeableActivity="false"
+            android:screenOrientation="portrait"
+            tools:targetApi="n" />
 
         <activity
             android:name="com.salton123.eleph.video.compressor.ui.SplashActivity"

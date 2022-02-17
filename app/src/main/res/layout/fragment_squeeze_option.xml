@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="middle"
+            android:singleLine="true"
             android:text="hello.mp4"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:singleLine="true" />
+            android:textStyle="bold" />
 
         <com.salton123.view.IconFontTextView
             android:id="@+id/tvPlay"
@@ -71,8 +71,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:orientation="horizontal">
 
                 <com.salton123.view.IconFontTextView
@@ -165,8 +165,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:orientation="horizontal">
 
                 <com.salton123.view.IconFontTextView

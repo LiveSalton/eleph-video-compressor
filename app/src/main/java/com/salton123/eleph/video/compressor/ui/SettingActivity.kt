@@ -50,59 +50,16 @@ class SettingActivity : BaseActivity() {
         sb_setting_rate_us.setOnClickListener {
             RateUsPopupComp().show(fragmentManager, "RateUsPopupComp")
         }
-//        sb_setting_policy.setOnClickListener {  }
-//        sb_setting_terms.setOnClickListener {  }
+        sb_setting_policy.setOnClickListener {
+            startActivity(Intent(this, PolicyActivity::class.java))
+        }
+        sb_setting_terms.setOnClickListener {
+            startActivity(Intent(this, PolicyActivity::class.java).apply {
+                putExtra("title", getString(R.string.terms_of_service))
+                putExtra("url", "https://www.salton123.com/terms-of-service")
+            })
+        }
     }
-//    override fun initViewAndData(savedInstanceState: Bundle?) {
-//        sb_setting_exit.visibility = View.GONE
-//        sb_setting_exit.setOnClickListener {
-//            ProviderManager.user().logout()
-//            var path = Constants.Router.App.MAIN
-//            ARouter.getInstance().build(path)
-//                .navigation(activity())
-//            ToastUtils.show(getString(R.string.logouted_account))
-//        }
-//        setListener(sb_setting_about, sb_setting_contact_us, sb_setting_rate_us, sb_setting_policy, sb_setting_terms)
-//    }
-//
-//    override fun onClick(p0: View?) {
-//        super.onClick(p0)
-//        when (p0) {
-//            sb_setting_about -> {
-//                RouterManager.about(activity())
-//            }
-//            sb_setting_contact_us -> {
-//                val intent = Intent("android.intent.action.SENDTO")
-//                intent.data = Uri.parse("mailto:newsalton@163.com")
-//                intent.putExtra("android.intent.extra.SUBJECT", "Eleph Player - Your Video Player And Cleaner, Android")
-//                val stringBuilder = StringBuilder()
-//                stringBuilder.append("Eleph Player_Android_" + BuildConfig.VERSION_NAME + "_" + BuildConfig.GIT_HASH)
-//                stringBuilder.append(Build.VERSION.SDK_INT)
-//                stringBuilder.append('_')
-//                stringBuilder.append(Build.MODEL)
-//                stringBuilder.append(10)
-//                intent.putExtra("android.intent.extra.TEXT", stringBuilder.toString())
-//                activity().startActivity(intent)
-//            }
-//            sb_setting_rate_us -> {
-//                RouterManager.rateUs(this)
-//            }
-//            sb_setting_policy -> {
-//                RouterManager.policy(this)
-//            }
-//            sb_setting_terms -> {
-//                RouterManager.termOfService(
-//                    this,
-//                    getString(R.string.terms_of_service),
-//                    "https://www.salton123.com/terms-of-service"
-//                )
-//            }
-//        }
-//    }
-//
-//    override fun getTitleText(): String {
-//        return getString(R.string.setting_title)
-//    }
 
     override fun getLayoutId(): Int = R.layout.activity_setting
 }

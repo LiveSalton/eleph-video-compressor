@@ -17,6 +17,9 @@ class AboutActivity : BaseActivity() {
     private lateinit var tvBuildTime: TextView
     override fun initViewAndData() {
         super.initViewAndData()
+        tvVersion = f(R.id.tvVersion)
+        tvBuildHash = f(R.id.tvBuildHash)
+        tvBuildTime = f(R.id.tvBuildTime)
         tvTitle.text = getString(R.string.setting_about)
         tvVersion.text = BuildConfig.VERSION_NAME
         tvBuildHash.text = BuildConfig.GIT_HASH
