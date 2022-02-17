@@ -20,12 +20,12 @@ public class PhoneVideoView extends VideoView {
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int w = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-
-        //重新设置一下宽和高
-        setMeasuredDimension(w,height);
-    }
+    // @Override
+    // protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    //     int w = MeasureSpec.getSize(widthMeasureSpec);
+    //     int height = MeasureSpec.getSize(heightMeasureSpec);
+    //
+    //     //重新设置一下宽和高
+    //     setMeasuredDimension(w,height);
+    // }
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.salton123.eleph.R;
@@ -64,6 +65,7 @@ public class VideoViewWrapper extends FrameLayout implements IPlayerControl {
                 isPlayComplete = true;
             }
         });
+        videoPlayer.setMediaController(new MediaController(getContext()));
         videoPlayer.setOnPreparedListener(mp -> {
             if (mVideoListener != null) {
                 mVideoListener.onPrepared();

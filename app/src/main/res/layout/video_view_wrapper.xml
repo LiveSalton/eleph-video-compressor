@@ -3,19 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
-    tools:parentTag="android.widget.FrameLayout"
-    >
+    tools:parentTag="android.widget.FrameLayout">
 
-    <com.salton123.video.player.PhoneVideoView
+    <VideoView
         android:id="@+id/phoneVideoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_gravity="center" />
 
     <ImageView
         android:id="@+id/ivThumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:layout_gravity="center" />
 </merge>

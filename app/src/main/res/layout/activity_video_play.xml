@@ -6,13 +6,13 @@
 
     <com.salton123.video.player.VideoViewWrapper
         android:id="@+id/videoPlayer"
+        android:background="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/immersionBarHeight"
-        android:background="@color/black20"
         android:orientation="vertical">
 
         <LinearLayout
