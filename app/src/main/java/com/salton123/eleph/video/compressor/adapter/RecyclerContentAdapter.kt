@@ -11,6 +11,7 @@ import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.holder.ContentStubViewHolder
 import com.salton123.eleph.video.compressor.model.SqueezeProp
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.compressor.observe.Observable
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.ui.HomeActivity
@@ -26,7 +27,7 @@ import kotlin.properties.Delegates
  * Author:
  * Description:
  */
-class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<ContentStubViewHolder>(), IAdapterDiffer {
+class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<ContentStubViewHolder>(), IAdapterDiffer, Observable<VideoItem> {
     private var dataList: MutableList<VideoItem> by Delegates.observable(mutableListOf()) { _, old, new ->
         onDiff(old, new,
             { o, n -> o.filePath == n.filePath },
@@ -128,8 +129,8 @@ class RecyclerContentAdapter(val recyclerView: RecyclerView) : RecyclerView.Adap
         }
     }
 
-    fun notifyItemChange(videoItem: VideoItem) {
-        val index = dataList.indexOf(videoItem)
+    override fun observe(data: VideoItem) {
+        val index = dataList.indexOf(data)
         notifyItemChanged(index)
     }
 

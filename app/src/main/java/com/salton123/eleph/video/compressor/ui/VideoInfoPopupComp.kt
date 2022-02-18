@@ -40,7 +40,7 @@ class VideoInfoPopupComp : BaseDialogFragment() {
     private var videoItem: VideoItem? = null
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
     override fun initViewAndData() {
-        videoItem = arguments.getSerializable("videoItem") as VideoItem?
+        videoItem = arguments?.getSerializable("videoItem") as VideoItem?
         videoItem?.apply {
             f<TextView>(R.id.tvTitleContent).text = name
             f<TextView>(R.id.tvResolutionContent).text = "${width}x${height}"

@@ -42,5 +42,13 @@
     <string name="setting_exit">退出登录</string>
     <string name="info">信息</string>
     <string name="ver">版本</string>
-
+    <string name="if_play_style">&#xe67a; \Play</string>
+    <string name="if_info_style">&#xe77e; \Info</string>
+    <string name="if_delete_style">&#xe67e; \Delete</string>
+    <string name="if_rename_style">&#xe62e; \Rename</string>
+    <string name="if_coder_style">&#xe6bb; \Coder</string>
+    <string name="if_resize_style">&#xe720; \Resize</string>
+    <string name="origin_file">Origin File</string>
+    <string name="squeezed_file">Squeezed File</string>
+    <string name="squeezed_option">Squeeze Option</string>
 </resources>

@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.salton123.eleph.R
-import com.salton123.eleph.video.compressor.adapter.RecyclerContentAdapter
 import com.salton123.eleph.video.compressor.model.VideoItem
+import com.salton123.eleph.video.compressor.observe.VideoItemObserver
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import kt.toast
 import java.io.File
@@ -18,8 +18,7 @@ import java.io.File
  * Author:
  * Description:
  */
-class RenameDialog(context: Context, videoItem: VideoItem, attachAdapter: RecyclerContentAdapter)
-    : AlertDialog(context, R.style.GeneralDialog) {
+class RenameDialog(context: Context, videoItem: VideoItem, callback: ((VideoItem) -> Unit)?) : AlertDialog(context, R.style.GeneralDialog) {
     init {
         val view = View.inflate(context, R.layout.dialog_view_rename, null)
         setView(view)
@@ -40,8 +39,9 @@ class RenameDialog(context: Context, videoItem: VideoItem, attachAdapter: Recycl
                 if (file.renameTo(newFile)) {
                     videoItem.name = tempFileName
                     videoItem.filePath = newFile.absolutePath
+                    VideoItemObserver.observe(videoItem)
                     VideoDao.updateVideo(videoItem)
-                    attachAdapter.notifyItemChange(videoItem)
+                    callback?.invoke(videoItem)
                 } else {
                     toast(context.getString(R.string.rename_failed))
                 }

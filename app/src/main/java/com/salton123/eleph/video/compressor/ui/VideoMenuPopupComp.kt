@@ -15,9 +15,9 @@ import com.salton123.eleph.video.compressor.model.VideoItem
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.eleph.video.compressor.ui.dialog.RenameDialog
-import kt.toast
 import com.salton123.manager.ActivityLifeCycleManager
 import com.salton123.utils.ScreenUtils
+import kt.toast
 import java.io.File
 
 /**
@@ -65,7 +65,9 @@ class VideoMenuPopupComp : BaseDialogFragment() {
 
         f<LinearLayout>(R.id.llRename).setOnClickListener {
             ActivityLifeCycleManager.INSTANCE.currentResumedActivity.let {
-                RenameDialog(it, videoItem, attachAdapter).show()
+                RenameDialog(it, videoItem) { item ->
+                    attachAdapter.observe(item)
+                }.show()
             }
             dismissAllowingStateLoss()
         }

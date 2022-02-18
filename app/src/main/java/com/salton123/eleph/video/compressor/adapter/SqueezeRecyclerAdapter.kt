@@ -48,7 +48,6 @@ class SqueezeRecyclerAdapter : RecyclerView.Adapter<SqueezeRecyclerHolder>(), IA
         holder.itemView.setOnClickListener {
             VideoInfoPopupComp().apply {
                 arguments = Bundle().apply {
-                    putString("filePath", item.filePath)
                     putSerializable("videoItem", item)
                 }
                 show((context as Activity).fragmentManager, "VideoInfoPopupComp")
