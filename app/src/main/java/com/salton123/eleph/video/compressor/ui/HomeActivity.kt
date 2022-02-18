@@ -19,7 +19,6 @@ import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
 import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
-import com.salton123.eleph.video.compressor.manager.AdMobManager
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
@@ -101,11 +100,14 @@ class HomeActivity : DelegateActivity() {
     }
 
     fun updateClearInfo() {
-        val clearInfo = VideoDao.getClearInfo()
-        val clearText = String.format("累计压缩%d个视频，节省%s内存",
-            clearInfo.squeezeCount,
-            Formatter.formatFileSize(activity(), clearInfo.squeezeTotal))
-        tvClearInfo.text = clearText
+        VideoDao.getClearInfo { clearInfo ->
+            val clearText = String.format("累计压缩%d个视频，节省%s内存",
+                clearInfo?.squeezeCount,
+                Formatter.formatFileSize(activity(), clearInfo?.squeezeTotal ?: 0))
+            runOnUi {
+                tvClearInfo.text = clearText
+            }
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
