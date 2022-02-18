@@ -2,6 +2,7 @@ package com.salton123.eleph.video.compressor.persistence
 
 import com.salton123.eleph.video.compressor.model.ClearInfo
 import com.salton123.eleph.video.compressor.model.VideoItem
+import kt.executeByIo
 import kt.log
 import org.xutils.common.task.AbsTask
 import org.xutils.x
@@ -30,20 +31,20 @@ object VideoDao {
     private val videoInfoDaoImpl: VideoInfoDaoImpl = VideoInfoDaoImpl(x.app())
     fun addVideo(item: VideoItem) {
         log("addVideo:$item")
-        x.task().run {
+        executeByIo {
             videoInfoDaoImpl.add(item)
         }
     }
 
     fun deleteVideo(item: VideoItem) {
         log("deleteVideo:$item")
-        x.task().run {
+        executeByIo {
             videoInfoDaoImpl.remove(item)
         }
     }
 
     fun updateVideo(item: VideoItem) {
-        x.task().run {
+        executeByIo {
             log("updateVideo:$item")
             videoInfoDaoImpl.update(item)
         }
