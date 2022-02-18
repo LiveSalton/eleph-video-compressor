@@ -44,10 +44,8 @@ object VideoDao {
     }
 
     fun updateVideo(item: VideoItem) {
-        executeByIo {
-            log("updateVideo:$item")
-            videoInfoDaoImpl.update(item)
-        }
+        log("updateVideo:$item")
+        videoInfoDaoImpl.update(item)
     }
 
     fun findAll(callback: ((MutableList<VideoItem>?) -> Unit)?) {

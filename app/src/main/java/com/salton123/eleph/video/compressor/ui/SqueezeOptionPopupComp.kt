@@ -183,6 +183,7 @@ class SqueezeOptionPopupComp : BaseDialogFragment(), Observable<VideoItem> {
                         }
                         .create().show()
                 }
+                dismissAllowingStateLoss()
             }
             tvOriginRename.setOnClickListener {
                 ActivityLifeCycleManager.INSTANCE.currentResumedActivity.let {

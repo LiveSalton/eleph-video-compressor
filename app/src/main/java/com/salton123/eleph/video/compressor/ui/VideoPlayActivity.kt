@@ -39,6 +39,10 @@ class VideoPlayActivity : DelegateActivity() {
 
         videoItem = intent?.getSerializableExtra("videoItem") as VideoItem?
         isPlaySqueeze = intent?.getBooleanExtra("isPlaySqueeze", false) ?: false
+        play()
+    }
+
+    fun play() {
         videoItem?.apply {
             tvTitle.text = name
             if (isPlaySqueeze) {
@@ -46,9 +50,17 @@ class VideoPlayActivity : DelegateActivity() {
             } else {
                 videoPlayer.updatePlayUrl(VideoBean(0, Uri.parse(filePath)))
             }
-
             videoPlayer.startPlay()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        videoPlayer.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        videoPlayer.onPause()
+    }
 }
