@@ -31,16 +31,12 @@ object VideoDao {
     private val videoInfoDaoImpl: VideoInfoDaoImpl = VideoInfoDaoImpl(x.app())
     fun addVideo(item: VideoItem) {
         log("addVideo:$item")
-        executeByIo {
-            videoInfoDaoImpl.add(item)
-        }
+        videoInfoDaoImpl.add(item)
     }
 
     fun deleteVideo(item: VideoItem) {
         log("deleteVideo:$item")
-        executeByIo {
-            videoInfoDaoImpl.remove(item)
-        }
+        videoInfoDaoImpl.remove(item)
     }
 
     fun updateVideo(item: VideoItem) {

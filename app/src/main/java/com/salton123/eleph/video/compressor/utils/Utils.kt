@@ -9,7 +9,7 @@ import kt.log
 import org.xutils.x
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 
 /**
  * User: wujinsheng1@yy.com
@@ -82,7 +82,7 @@ object Utils {
         return VideoItem().apply {
             this.filePath = filePath
             this.name = if (TextUtils.isEmpty(name)) getFileName(filePath) else name!!
-            this.mimeType = if (TextUtils.isEmpty(mimeType)) "video/mp4" else mimeType
+            this.mimeType = if (TextUtils.isEmpty(mimeType)) "video/mp4" else mimeType ?: ""
             this.size = file.length()
             this.duration = duration
             this.createdAt = file.lastModified()

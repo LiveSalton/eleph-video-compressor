@@ -275,13 +275,14 @@ class SqueezeOptionPopupComp : BaseDialogFragment(), Observable<VideoItem> {
 
     override fun onStart() {
         super.onStart()
-        val window = dialog.window
-        ScreenUtils.hideNavigationBar(window)
-        val params = window.attributes
-        params.gravity = Gravity.BOTTOM
-        params.width = WindowManager.LayoutParams.MATCH_PARENT
-        window.attributes = params
-        window.setWindowAnimations(R.style.slide_popup_ani)
+        dialog.window?.let { window ->
+            ScreenUtils.hideNavigationBar(window)
+            val params = window.attributes
+            params.gravity = Gravity.BOTTOM
+            params.width = WindowManager.LayoutParams.MATCH_PARENT
+            window.attributes = params
+            window.setWindowAnimations(R.style.slide_popup_ani)
+        }
     }
 
     override fun onDestroy() {

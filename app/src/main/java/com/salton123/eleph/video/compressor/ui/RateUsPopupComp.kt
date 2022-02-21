@@ -71,13 +71,14 @@ class RateUsPopupComp : BaseDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        val window = dialog.window
-        ScreenUtils.hideNavigationBar(window)
-        val params = window.attributes
-        params.gravity = Gravity.CENTER
-        val width = ScreenUtils.getScreenWidth() - ScreenUtils.dp2px(60f)
-        params.width = width
-        window.attributes = params
-        window.setWindowAnimations(R.style.slide_popup_ani)
+        dialog.window?.let { window ->
+            ScreenUtils.hideNavigationBar(window)
+            val params = window.attributes
+            params.gravity = Gravity.CENTER
+            val width = ScreenUtils.getScreenWidth() - ScreenUtils.dp2px(60f)
+            params.width = width
+            window.attributes = params
+            window.setWindowAnimations(R.style.slide_popup_ani)
+        }
     }
 }
