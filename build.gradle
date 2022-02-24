@@ -26,6 +26,13 @@ allprojects {
         flatDir {
             dirs 'src/main/libs'
         }
+        maven {
+            credentials {
+                username '6XCT1E'
+                password 'XldVM4G6IO'
+            }
+            url 'https://repo.rdc.aliyun.com/repository/43441-release-5ZHLZs/'
+        }
 //        maven { url 'https://dl.bintray.com/umsdk/release' }
 //        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
 //        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }

@@ -1,14 +1,9 @@
 package com.salton123.eleph
 
-import android.app.Activity
 import android.app.Application
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.bumptech.glide.Glide
 import com.salton123.eleph.video.compressor.manager.AdMobManager
 import com.salton123.manager.ActivityLifeCycleManager
-import kt.log
 import org.xutils.x
 
 /**
@@ -25,4 +20,14 @@ class XApp : Application() {
         ActivityLifeCycleManager.INSTANCE.init(this)
     }
 
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        Glide.get(this).onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        Glide.get(this).onTrimMemory(level)
+    }
 }

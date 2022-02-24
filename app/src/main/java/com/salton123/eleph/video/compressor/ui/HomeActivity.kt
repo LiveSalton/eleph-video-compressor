@@ -3,6 +3,7 @@ package com.salton123.eleph.video.compressor.ui
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import android.text.format.Formatter
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.salton123.base.DelegateActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.BuildConfig
@@ -33,7 +35,8 @@ import kt.runOnUi
 
 class HomeActivity : DelegateActivity() {
     private val TAG = "HomeActivity"
-    private val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    private val permissions =
+        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private val REQUEST_CODE = 101
     override fun getLayout(): Int = R.layout.activity_home
     private lateinit var mImmersionFeature: ImmersionFeature
@@ -49,14 +52,17 @@ class HomeActivity : DelegateActivity() {
         if (isPermissionGrant()) {
             MediaFileScanTask.launch()
         } else {
-            requestPermissions(permissions, REQUEST_CODE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(permissions, REQUEST_CODE)
+            }
         }
     }
 
     private fun isPermissionGrant(): Boolean {
         var result = false
         for (item in permissions) {
-            result = result and (checkPermission(item, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED)
+            result = result and (checkPermission(item, Process.myPid(),
+                Process.myUid()) == PackageManager.PERMISSION_GRANTED)
         }
         return result
     }
@@ -96,6 +102,16 @@ class HomeActivity : DelegateActivity() {
 //            AdMobManager.loadBannerAd(this, flAdContainer)
             openActivity(SettingActivity::class.java, Bundle())
         }
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    Glide.with(this@HomeActivity).resumeRequests()
+                } else {
+                    Glide.with(this@HomeActivity).pauseRequests()
+                }
+            }
+        })
         updateClearInfo()
     }
 
