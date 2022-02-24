@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94374139422",
+    "project_id": "eleph-squeezer",
+    "storage_bucket": "eleph-squeezer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94374139422:android:5200be7d215555208c400f",
+        "android_client_info": {
+          "package_name": "com.salton123.eleph.squeezer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94374139422-3njroc67iffhi2tvn91742di9n3i74qd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ7r8gAXhbegX4lmW_MXs2bAdusY5KbbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94374139422-3njroc67iffhi2tvn91742di9n3i74qd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
