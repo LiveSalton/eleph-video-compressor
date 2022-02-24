@@ -37,7 +37,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="@string/if_menu"
+                android:text="@string/if_setting"
                 android:textColor="@color/black70"
                 android:textSize="20sp"
                 android:textStyle="bold" />

@@ -15,6 +15,9 @@
     <string name="if_menu">&#xe7f2;</string>
     <string name="if_movie">&#xe6bb;</string>
     <string name="if_resize">&#xe720;</string>
+    <string name="if_collection_normal">&#xe8b9;</string>
+    <string name="if_collection_selected">&#xe8c6;</string>
+    <string name="if_setting">&#xe67d;</string>
 
     <string name="if_home">&#xe603;</string>
     <string name="if_retangel">&#xe648;</string>

@@ -3,8 +3,14 @@
 buildscript {
     apply from: "./config.gradle"
     repositories {
-        google()
-        jcenter()
+//        google()
+        maven { url 'https://archiva-maven-storage-prod.oss-cn-beijing.aliyuncs.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+//        google()
+//        jcenter()
 //        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
     }
     dependencies {
@@ -18,21 +24,27 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
-        mavenLocal()
-        maven { url 'https://jitpack.io' }
-        maven { url '../../repo' }
-        flatDir {
-            dirs 'src/main/libs'
-        }
-        maven {
-            credentials {
-                username '6XCT1E'
-                password 'XldVM4G6IO'
-            }
-            url 'https://repo.rdc.aliyun.com/repository/43441-release-5ZHLZs/'
-        }
+//        google()
+        maven { url 'https://archiva-maven-storage-prod.oss-cn-beijing.aliyuncs.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+//        google()
+//        jcenter()
+//        mavenLocal()
+//        maven { url 'https://jitpack.io' }
+//        maven { url '../../repo' }
+//        flatDir {
+//            dirs 'src/main/libs'
+//        }
+//        maven {
+//            credentials {
+//                username '6XCT1E'
+//                password 'XldVM4G6IO'
+//            }
+//            url 'https://repo.rdc.aliyun.com/repository/43441-release-5ZHLZs/'
+//        }
 //        maven { url 'https://dl.bintray.com/umsdk/release' }
 //        maven { url 'https://jitpack.io' }//添加jitpack仓库地址
 //        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
