@@ -107,6 +107,8 @@ object MediaFileScanTask {
         videoMap[title]?.apply {
             if (Utils.isFileExist(videoItem.filePath)) {
                 add(videoItem)
+                val types = videoMap.keys.sortedDescending().toMutableList()
+                onTypeListChange?.invoke(types)
                 onDataListChange?.invoke(title, this)
             } else {
                 VideoDao.deleteVideo(videoItem)

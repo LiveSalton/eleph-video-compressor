@@ -3,6 +3,7 @@ package com.salton123.eleph.video.compressor.ui
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Process
 import android.text.format.Formatter
@@ -12,18 +13,21 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.salton123.base.DelegateActivity
 import com.salton123.base.feature.ImmersionFeature
 import com.salton123.eleph.BuildConfig
 import com.salton123.eleph.R
-import com.salton123.eleph.video.compressor.adapter.VideoRecyclerAdapter
+import com.salton123.eleph.video.compressor.adapter.VideoRecyclerTypeAdapter
+import com.salton123.eleph.video.compressor.model.*
 import com.salton123.eleph.video.compressor.persistence.VideoDao
 import com.salton123.eleph.video.compressor.task.FFmpegCompressor
 import com.salton123.eleph.video.compressor.task.MediaFileScanTask
 import com.salton123.service.SqueezeService
+import com.salton123.utils.DateUtils
 import kt.runOnUi
+import java.util.*
 
 /**
  * Time:2022/1/29 11:40 上午
@@ -42,14 +46,16 @@ class HomeActivity : DelegateActivity() {
     private lateinit var flAdContainer: FrameLayout
     private lateinit var tvMore: TextView
     private lateinit var tvClearInfo: TextView
-    private lateinit var mAdapter: VideoRecyclerAdapter
+    private lateinit var mAdapter: VideoRecyclerTypeAdapter
     override fun initVariable(savedInstanceState: Bundle?) {
         mImmersionFeature = ImmersionFeature(this)
         addFeature(mImmersionFeature)
         if (isPermissionGrant()) {
             MediaFileScanTask.launch()
         } else {
-            requestPermissions(permissions, REQUEST_CODE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(permissions, REQUEST_CODE)
+            }
         }
     }
 
@@ -69,22 +75,50 @@ class HomeActivity : DelegateActivity() {
         ContextCompat.startForegroundService(this, Intent(this, SqueezeService::class.java))
     }
 
+    private val dataList: MutableList<IMultiType> = mutableListOf()
+
     private fun initListView() {
         recyclerView = findViewById(R.id.recyclerView)
         llEmptyView = findViewById(R.id.llEmptyView)
         tvMore = findViewById(R.id.tvMore)
         tvClearInfo = findViewById(R.id.tvClearInfo)
         flAdContainer = findViewById(R.id.flAdContainer)
-        mAdapter = VideoRecyclerAdapter()
+        mAdapter = VideoRecyclerTypeAdapter()
+        val gridLayoutManager = GridLayoutManager(this, 4)
         recyclerView.adapter = mAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = gridLayoutManager
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return when (dataList[position].type) {
+                    TYPE_TITLE -> {
+                        4
+                    }
+                    TYPE_CONTENT_STUB -> {
+                        2
+                    }
+                    else -> {
+                        4
+                    }
+                }
+            }
+        }
         MediaFileScanTask.onTypeListChange = { list ->
             runOnUi {
                 if (list.isEmpty()) {
                     llEmptyView.visibility = View.VISIBLE
                     recyclerView.visibility = View.GONE
                 } else {
-                    mAdapter.setData(list)
+                    dataList.clear()
+                    list.forEach { timestamp ->
+                        val title = DateUtils.timeFormatNearby(Date(timestamp))
+                        dataList.add(TitleType(title))
+                        MediaFileScanTask.videoMap[timestamp]?.let { videoList ->
+                            videoList.forEach {
+                                dataList.add(ContentStubType(it))
+                            }
+                        }
+                    }
+                    mAdapter.setData(dataList)
                     recyclerView.scrollToPosition(0)
                     llEmptyView.visibility = View.GONE
                     recyclerView.visibility = View.VISIBLE
